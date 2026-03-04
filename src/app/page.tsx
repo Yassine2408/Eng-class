@@ -1,7 +1,14 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useAppStore, useNextSession, useOverallProgress } from '@/lib/store';
+import { 
+  useAppStore, 
+  useNextSession, 
+  useOverallProgress,
+  useSessions,
+  useProgress,
+  useSubmissions,
+} from '@/lib/store';
 import { format, parseISO } from 'date-fns';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
