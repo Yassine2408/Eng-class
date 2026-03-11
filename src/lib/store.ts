@@ -171,7 +171,7 @@ export const useAppStore = create<AppState>()(
       },
     }),
     {
-      name: 'travel-english-coaching',
+      name: 'travel-english-coaching-v2-ar',
       partialize: (state) => ({
         sessions: state.sessions,
         submissions: state.submissions,
