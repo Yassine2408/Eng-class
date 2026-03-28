@@ -231,25 +231,51 @@ function MobileBottomNav({
   const tabs = role === 'teacher' ? teacherTabs : studentTabs;
   
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 z-50 safe-area-inset-bottom">
-      <div className="flex justify-around items-center h-16 max-w-lg mx-auto px-1">
-        {tabs.map((tab) => {
-          const isActive = activeTab === tab.id;
-          return (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`flex flex-col items-center justify-center flex-1 h-full py-2 px-1 touch-manipulation transition-colors ${
-                isActive ? 'text-teal-600' : 'text-slate-500'
-              }`}
-            >
-              <tab.icon className={`w-5 h-5 mb-1 ${isActive ? 'stroke-[2.5px]' : ''}`} />
-              <span className={`text-[10px] sm:text-xs ${isActive ? 'font-semibold' : ''}`}>{tab.label}</span>
-            </button>
-          );
-        })}
-      </div>
-    </nav>
+    <>
+      <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 z-50 safe-area-inset-bottom sm:hidden">
+        <div className="flex justify-around items-center h-16 max-w-lg mx-auto px-1">
+          {tabs.map((tab) => {
+            const isActive = activeTab === tab.id;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`flex flex-col items-center justify-center flex-1 h-full py-2 px-1 touch-manipulation transition-colors ${
+                  isActive ? 'text-teal-600' : 'text-slate-500'
+                }`}
+              >
+                <tab.icon className={`w-5 h-5 mb-1 ${isActive ? 'stroke-[2.5px]' : ''}`} />
+                <span className={`text-[10px] ${isActive ? 'font-semibold' : ''}`}>{tab.label}</span>
+              </button>
+            );
+          })}
+        </div>
+      </nav>
+
+      <nav className="hidden sm:block fixed bottom-4 left-1/2 -translate-x-1/2 z-50">
+        <div className="bg-white/95 backdrop-blur border border-slate-200 rounded-2xl shadow-lg px-2 py-1.5">
+          <div className="flex items-center gap-1">
+            {tabs.map((tab) => {
+              const isActive = activeTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm transition-colors ${
+                    isActive
+                      ? 'bg-teal-50 text-teal-700 font-medium'
+                      : 'text-slate-600 hover:bg-slate-100'
+                  }`}
+                >
+                  <tab.icon className="w-4 h-4" />
+                  <span>{tab.label}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </nav>
+    </>
   );
 }
 
