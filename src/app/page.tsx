@@ -30,10 +30,43 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Textarea } from '@/components/ui/textarea';
 import { Checkbox } from '@/components/ui/checkbox';
 
+type MonthOption = {
+  key: string;
+  label: string;
+  year: number;
+  month: number;
+};
+
+const getMonthKeyFromDate = (date: string) => date.slice(0, 7);
+
+function getMonthOptions(sessions: Session[]): MonthOption[] {
+  const seen = new Map<string, MonthOption>();
+
+  for (const session of sessions) {
+    const date = parseISO(session.date);
+    const key = getMonthKeyFromDate(session.date);
+    if (!seen.has(key)) {
+      seen.set(key, {
+        key,
+        label: format(date, 'MMMM yyyy'),
+        year: date.getFullYear(),
+        month: date.getMonth(),
+      });
+    }
+  }
+
+  return Array.from(seen.values()).sort((a, b) => a.key.localeCompare(b.key));
+}
+
 // ============ LANDING PAGE ============
 function LandingPage() {
   const nextSession = useNextSession();
+  const sessions = useSessions();
+  const totalSessions = sessions.length;
+  const monthOptions = getMonthOptions(sessions);
+  const selectedMonth = useAppStore((state) => state.selectedMonth);
   const setCurrentView = useAppStore((state) => state.setCurrentView);
+  const setSelectedMonth = useAppStore((state) => state.setSelectedMonth);
   
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 flex flex-col">
@@ -64,6 +97,28 @@ function LandingPage() {
         )}
         
         {/* Entry Buttons */}
+        <div className="flex gap-2 overflow-x-auto pb-1 mb-4 sm:mb-5 w-full max-w-md px-4 scrollbar-hide">
+          <Button
+            size="sm"
+            variant={selectedMonth === 'all' ? 'default' : 'outline'}
+            className={selectedMonth === 'all' ? 'bg-teal-600 hover:bg-teal-700' : ''}
+            onClick={() => setSelectedMonth('all')}
+          >
+            All Months
+          </Button>
+          {monthOptions.map((month) => (
+            <Button
+              key={month.key}
+              size="sm"
+              variant={selectedMonth === month.key ? 'default' : 'outline'}
+              className={selectedMonth === month.key ? 'bg-teal-600 hover:bg-teal-700' : ''}
+              onClick={() => setSelectedMonth(month.key)}
+            >
+              {month.label}
+            </Button>
+          ))}
+        </div>
+
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full max-w-md px-4">
           <Button 
             size="lg" 
@@ -86,7 +141,7 @@ function LandingPage() {
       </main>
       
       <footer className="p-4 text-center text-xs sm:text-sm text-slate-500 safe-area-inset-bottom">
-        8 Sessions • Month 1 Program • Focus on Travel & Daily Communication
+        {totalSessions} Sessions • Program • Focus on Travel & Daily Communication
       </footer>
     </div>
   );
@@ -246,24 +301,68 @@ function StudentPlanPage({ onSelectSession }: { onSelectSession: (session: Sessi
   const sessions = useAppStore((state) => state.sessions);
   const progress = useAppStore((state) => state.progress);
   const nextSession = useNextSession();
+  const selectedMonth = useAppStore((state) => state.selectedMonth);
+  const setSelectedMonth = useAppStore((state) => state.setSelectedMonth);
+  const sortedSessions = [...sessions].sort((a, b) => parseISO(a.date).getTime() - parseISO(b.date).getTime());
+  const monthOptions = getMonthOptions(sortedSessions);
+  const filteredSessions = selectedMonth === 'all'
+    ? sortedSessions
+    : sortedSessions.filter((session) => getMonthKeyFromDate(session.date) === selectedMonth);
+  const firstSession = sortedSessions[0];
+  const lastSession = sortedSessions[sortedSessions.length - 1];
+  const firstMonthLabel = firstSession ? format(parseISO(firstSession.date), 'MMMM yyyy') : '';
+  const lastMonthLabel = lastSession ? format(parseISO(lastSession.date), 'MMMM yyyy') : '';
+  const timelineLabel = firstMonthLabel && lastMonthLabel && firstMonthLabel !== lastMonthLabel
+    ? `${firstMonthLabel} to ${lastMonthLabel}`
+    : firstMonthLabel;
+  const selectedMonthLabel = selectedMonth === 'all'
+    ? timelineLabel
+    : monthOptions.find((m) => m.key === selectedMonth)?.label ?? timelineLabel;
   const today = new Date();
   today.setHours(0, 0, 0, 0);
+  const nextVisibleSession = filteredSessions.find((session) => {
+    const date = parseISO(session.date);
+    date.setHours(0, 0, 0, 0);
+    return date >= today;
+  }) ?? filteredSessions[0] ?? nextSession;
   
   return (
     <div className="p-3 sm:p-4 space-y-4 sm:space-y-6 pb-20">
       {/* Month Header */}
       <div className="text-center py-2">
-        <h2 className="text-xl sm:text-2xl font-bold text-slate-800">Month 1 Plan</h2>
-        <p className="text-sm text-slate-600">March 2026 • 8 Sessions</p>
+        <h2 className="text-xl sm:text-2xl font-bold text-slate-800">Program Plan</h2>
+        <p className="text-sm text-slate-600">{selectedMonthLabel} • {filteredSessions.length} Sessions</p>
+      </div>
+
+      <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
+        <Button
+          size="sm"
+          variant={selectedMonth === 'all' ? 'default' : 'outline'}
+          className={selectedMonth === 'all' ? 'bg-teal-600 hover:bg-teal-700' : ''}
+          onClick={() => setSelectedMonth('all')}
+        >
+          All
+        </Button>
+        {monthOptions.map((month) => (
+          <Button
+            key={month.key}
+            size="sm"
+            variant={selectedMonth === month.key ? 'default' : 'outline'}
+            className={selectedMonth === month.key ? 'bg-teal-600 hover:bg-teal-700' : ''}
+            onClick={() => setSelectedMonth(month.key)}
+          >
+            {month.label}
+          </Button>
+        ))}
       </div>
       
       {/* Sessions Grid */}
       <div className="grid gap-2 sm:gap-3">
-        {sessions.map((session) => {
+        {filteredSessions.map((session) => {
           const sessionDate = parseISO(session.date);
           const isPast = sessionDate < today;
           const isToday = sessionDate.toDateString() === today.toDateString();
-          const isNext = nextSession?.id === session.id;
+          const isNext = nextVisibleSession?.id === session.id;
           const sessionProgress = progress.find(p => p.sessionId === session.id);
           
           return (
@@ -630,6 +729,18 @@ function ExerciseCard({ exercise, isTeacher }: { exercise: Exercise; isTeacher: 
   const [showAnswers, setShowAnswers] = useState(false);
   const [matches, setMatches] = useState<Record<string, string>>({});
   const [dialogueOrder, setDialogueOrder] = useState<string[]>([]);
+
+  useEffect(() => {
+    setAnswers({});
+    setShowAnswers(false);
+    setMatches({});
+    if (exercise.type === 'dialogue-builder') {
+      const lines = exercise.content.lines || [];
+      setDialogueOrder(lines.map((line) => line.id));
+      return;
+    }
+    setDialogueOrder([]);
+  }, [exercise]);
   
   const renderExercise = () => {
     switch (exercise.type) {
@@ -682,7 +793,7 @@ function ExerciseCard({ exercise, isTeacher }: { exercise: Exercise; isTeacher: 
       case 'matching':
         const leftItems = exercise.content.pairs?.map(p => ({ id: p.id, text: p.left })) || [];
         const rightItems = exercise.content.pairs?.map(p => ({ id: p.id, text: p.right })) || [];
-        const shuffledRight = [...rightItems].sort(() => Math.random() - 0.5);
+        const orderedRight = [...rightItems].sort((a, b) => a.text.localeCompare(b.text));
         
         return (
           <div className="space-y-2">
@@ -696,7 +807,7 @@ function ExerciseCard({ exercise, isTeacher }: { exercise: Exercise; isTeacher: 
                   onChange={(e) => setMatches({ ...matches, [left.id]: e.target.value })}
                 >
                   <option value="">Select...</option>
-                  {shuffledRight.map((right) => (
+                  {orderedRight.map((right) => (
                     <option key={right.id} value={right.id}>{right.text}</option>
                   ))}
                 </select>
@@ -707,9 +818,6 @@ function ExerciseCard({ exercise, isTeacher }: { exercise: Exercise; isTeacher: 
         
       case 'dialogue-builder':
         const lines = exercise.content.lines || [];
-        if (dialogueOrder.length === 0) {
-          setDialogueOrder(lines.map(l => l.id).sort(() => Math.random() - 0.5));
-        }
         
         return (
           <div className="space-y-2">
@@ -1073,11 +1181,11 @@ function DailyRoutinePage() {
     return () => clearInterval(interval);
   }, [isRunning]);
   
-  // Get random content for daily practice
+  // Use deterministic picks to avoid SSR/client hydration mismatches.
   const allVocab = sessions.flatMap(s => s.vocab);
   const allPhrases = sessions.flatMap(s => s.phrases);
-  const randomVocab = [...allVocab].sort(() => Math.random() - 0.5).slice(0, 5);
-  const randomPhrases = [...allPhrases].sort(() => Math.random() - 0.5).slice(0, 3);
+  const randomVocab = allVocab.slice(0, 5);
+  const randomPhrases = allPhrases.slice(0, 3);
   
   const steps = [
     { id: 'listening', title: 'Listening', duration: 5, icon: Volume2, description: 'Watch a short video' },
@@ -1100,7 +1208,7 @@ function DailyRoutinePage() {
     'Introduce yourself to a new friend.',
   ];
   
-  const randomPrompt = speakingPrompts[Math.floor(Math.random() * speakingPrompts.length)];
+  const randomPrompt = speakingPrompts[0];
   
   return (
     <div className="p-3 sm:p-4 space-y-4 sm:space-y-6 pb-20">
@@ -1244,15 +1352,28 @@ function DailyRoutinePage() {
 // ============ PHRASEBOOK PAGE ============
 function PhrasebookPage({ isTeacher }: { isTeacher: boolean }) {
   const phrasebook = useAppStore((state) => state.phrasebook);
+  const sessions = useAppStore((state) => state.sessions);
+  const selectedMonth = useAppStore((state) => state.selectedMonth);
   const favoritePhraseIds = useAppStore((state) => state.favoritePhraseIds);
   const toggleFavoritePhrase = useAppStore((state) => state.toggleFavoritePhrase);
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState<string>('all');
   const [showFavorites, setShowFavorites] = useState(false);
+
+  const sessionPhrasesForMonth = selectedMonth === 'all'
+    ? []
+    : sessions
+      .filter((session) => getMonthKeyFromDate(session.date) === selectedMonth)
+      .flatMap((session) => session.phrases);
+
+  const phraseSource = selectedMonth === 'all' ? phrasebook : sessionPhrasesForMonth;
   
-  const categories = ['all', ...new Set(phrasebook.map(p => p.category))];
+  const categories = [
+    'all',
+    ...Array.from(new Set(phraseSource.map((p) => p.category).filter((cat): cat is string => Boolean(cat)))),
+  ];
   
-  const filteredPhrases = phrasebook.filter((phrase) => {
+  const filteredPhrases = phraseSource.filter((phrase) => {
     const matchesSearch = phrase.phrase.toLowerCase().includes(search.toLowerCase()) ||
       phrase.translation.toLowerCase().includes(search.toLowerCase());
     const matchesCategory = category === 'all' || phrase.category === category;
@@ -1307,7 +1428,9 @@ function PhrasebookPage({ isTeacher }: { isTeacher: boolean }) {
                   <p className="font-medium text-slate-800 text-sm sm:text-base">{phrase.phrase}</p>
                   <p className="text-xs sm:text-sm text-slate-600">{phrase.translation}</p>
                   <div className="flex items-center gap-2 mt-1 flex-wrap">
-                    <Badge variant="outline" className="text-[10px]">{phrase.category}</Badge>
+                    {phrase.category && (
+                      <Badge variant="outline" className="text-[10px]">{phrase.category}</Badge>
+                    )}
                     {phrase.situation && (
                       <span className="text-[10px] text-slate-500">{phrase.situation}</span>
                     )}
@@ -1331,7 +1454,7 @@ function PhrasebookPage({ isTeacher }: { isTeacher: boolean }) {
       
       {filteredPhrases.length === 0 && (
         <div className="text-center py-8 text-slate-500 text-sm">
-          No phrases found
+          No phrases found for this month
         </div>
       )}
     </div>
@@ -1342,10 +1465,14 @@ function PhrasebookPage({ isTeacher }: { isTeacher: boolean }) {
 function QuickPracticePage() {
   const [activeTab, setActiveTab] = useState('flashcards');
   const sessions = useAppStore((state) => state.sessions);
+  const selectedMonth = useAppStore((state) => state.selectedMonth);
+  const sessionsForPractice = selectedMonth === 'all'
+    ? sessions
+    : sessions.filter((session) => getMonthKeyFromDate(session.date) === selectedMonth);
   
-  // Get all vocab from all sessions
-  const allVocab = sessions.flatMap(s => s.vocab);
-  const allPhrases = sessions.flatMap(s => s.phrases);
+  // Get practice content from selected month.
+  const allVocab = sessionsForPractice.flatMap(s => s.vocab);
+  const allPhrases = sessionsForPractice.flatMap(s => s.phrases);
   
   return (
     <div className="p-3 sm:p-4 space-y-3 sm:space-y-4 pb-20">
@@ -1630,33 +1757,89 @@ function TeacherDashboard({ onSelectSession }: { onSelectSession: (session: Sess
   const progress = useProgress();
   const submissions = useSubmissions();
   const nextSession = useNextSession();
+  const selectedMonth = useAppStore((state) => state.selectedMonth);
+  const setSelectedMonth = useAppStore((state) => state.setSelectedMonth);
+  const monthOptions = getMonthOptions(sessions);
   
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-  
-  const upcomingSessions = sessions.filter(s => {
+
+  const nextFutureSession = sessions
+    .filter((s) => {
+      const sessionDate = new Date(s.date);
+      sessionDate.setHours(0, 0, 0, 0);
+      return sessionDate > today;
+    })
+    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())[0];
+
+  const defaultMonthKey = nextFutureSession
+    ? getMonthKeyFromDate(nextFutureSession.date)
+    : nextSession
+      ? getMonthKeyFromDate(nextSession.date)
+      : monthOptions[0]?.key ?? 'all';
+
+  useEffect(() => {
+    const firstMonthKey = monthOptions[0]?.key ?? defaultMonthKey;
+    if (selectedMonth !== 'all' && !monthOptions.some((month) => month.key === selectedMonth) && firstMonthKey) {
+      setSelectedMonth(firstMonthKey);
+    }
+  }, [monthOptions, selectedMonth, defaultMonthKey, setSelectedMonth]);
+
+  const selectedMonthOption = monthOptions.find((month) => month.key === selectedMonth);
+  const monthFilteredSessions = selectedMonthOption
+    ? sessions.filter((session) => getMonthKeyFromDate(session.date) === selectedMonthOption.key)
+    : sessions;
+
+  const upcomingSessions = monthFilteredSessions.filter((s) => {
     const sessionDate = new Date(s.date);
     sessionDate.setHours(0, 0, 0, 0);
     return sessionDate >= today;
   });
+  const nextVisibleSession = upcomingSessions[0] ?? monthFilteredSessions[0] ?? nextSession;
+
+  const calendarBaseDate = selectedMonthOption
+    ? new Date(selectedMonthOption.year, selectedMonthOption.month, 1)
+    : nextFutureSession
+      ? parseISO(nextFutureSession.date)
+    : nextSession
+      ? parseISO(nextSession.date)
+      : today;
+  const calendarYear = calendarBaseDate.getFullYear();
+  const calendarMonth = calendarBaseDate.getMonth();
+  const firstDayIndex = new Date(calendarYear, calendarMonth, 1).getDay();
+  const daysInMonth = new Date(calendarYear, calendarMonth + 1, 0).getDate();
   
   return (
     <div className="p-3 sm:p-4 space-y-4 sm:space-y-6 pb-20">
       <h2 className="text-xl sm:text-2xl font-bold text-slate-800">Teacher Dashboard</h2>
+
+      <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
+        {monthOptions.map((month) => (
+          <Button
+            key={month.key}
+            size="sm"
+            variant={selectedMonth === month.key ? 'default' : 'outline'}
+            className={selectedMonth === month.key ? 'bg-teal-600 hover:bg-teal-700' : ''}
+            onClick={() => setSelectedMonth(month.key)}
+          >
+            {month.label}
+          </Button>
+        ))}
+      </div>
       
       {/* Next Session */}
-      {nextSession && (
+      {nextVisibleSession && (
         <Card className="border-teal-200 bg-teal-50/50">
           <CardHeader className="pb-2 px-3 sm:px-4 pt-3 sm:pt-4">
             <CardDescription className="text-teal-700 font-medium text-xs sm:text-sm">Next Session</CardDescription>
-            <CardTitle className="text-base sm:text-lg">{nextSession.title}</CardTitle>
+            <CardTitle className="text-base sm:text-lg">{nextVisibleSession.title}</CardTitle>
           </CardHeader>
           <CardContent className="px-3 sm:px-4 pb-3 sm:pb-4">
             <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-600 mb-3">
               <Calendar className="w-4 h-4" />
-              <span>{format(parseISO(nextSession.date), 'EEE, MMM d')}</span>
+              <span>{format(parseISO(nextVisibleSession.date), 'EEE, MMM d')}</span>
             </div>
-            <Button onClick={() => onSelectSession(nextSession)} className="h-11 bg-teal-600 hover:bg-teal-700 touch-manipulation">
+            <Button onClick={() => onSelectSession(nextVisibleSession)} className="h-11 bg-teal-600 hover:bg-teal-700 touch-manipulation">
               Open Session
             </Button>
           </CardContent>
@@ -1682,7 +1865,9 @@ function TeacherDashboard({ onSelectSession }: { onSelectSession: (session: Sess
       {/* Sessions Calendar */}
       <Card>
         <CardHeader className="pb-2 px-3 sm:px-4 pt-3 sm:pt-4">
-          <CardTitle className="text-base sm:text-lg">Month Overview</CardTitle>
+          <CardTitle className="text-base sm:text-lg">
+            Month Overview - {format(new Date(calendarYear, calendarMonth, 1), 'MMMM yyyy')}
+          </CardTitle>
         </CardHeader>
         <CardContent className="px-3 sm:px-4 pb-3 sm:pb-4">
           <div className="grid grid-cols-7 gap-1 text-center text-[10px] sm:text-xs mb-2">
@@ -1691,17 +1876,20 @@ function TeacherDashboard({ onSelectSession }: { onSelectSession: (session: Sess
             ))}
           </div>
           <div className="grid grid-cols-7 gap-1">
-            {/* March 2026 starts on Sunday */}
-            {Array.from({ length: 31 }).map((_, i) => {
+            {Array.from({ length: firstDayIndex }).map((_, i) => (
+              <div key={`empty-${i}`} className="aspect-square" />
+            ))}
+            {Array.from({ length: daysInMonth }).map((_, i) => {
               const day = i + 1;
-              const dateStr = `2026-03-${String(day).padStart(2, '0')}`;
+              const dateObj = new Date(calendarYear, calendarMonth, day);
+              const dateStr = format(dateObj, 'yyyy-MM-dd');
               const session = sessions.find(s => s.date === dateStr);
               const sessionProgress = progress.find(p => p.sessionId === session?.id);
-              const isToday = new Date(2026, 2, day).toDateString() === today.toDateString();
+              const isToday = dateObj.toDateString() === today.toDateString();
               
               return (
                 <div
-                  key={day}
+                  key={dateStr}
                   className={`aspect-square rounded flex items-center justify-center text-xs sm:text-sm cursor-pointer transition-colors touch-manipulation ${
                     session ? (sessionProgress?.attended ? 'bg-green-100 text-green-700' : 'bg-teal-100 text-teal-700') :
                     isToday ? 'bg-slate-200' : 'bg-slate-50'
@@ -1747,13 +1935,41 @@ function TeacherDashboard({ onSelectSession }: { onSelectSession: (session: Sess
 function TeacherSessionsList({ onSelectSession }: { onSelectSession: (session: Session) => void }) {
   const sessions = useSessions();
   const progress = useProgress();
+  const selectedMonth = useAppStore((state) => state.selectedMonth);
+  const setSelectedMonth = useAppStore((state) => state.setSelectedMonth);
+  const monthOptions = getMonthOptions(sessions);
+  const filteredSessions = selectedMonth === 'all'
+    ? sessions
+    : sessions.filter((session) => getMonthKeyFromDate(session.date) === selectedMonth);
   
   return (
     <div className="p-3 sm:p-4 space-y-3 sm:space-y-4 pb-20">
       <h2 className="text-xl sm:text-2xl font-bold text-slate-800">All Sessions</h2>
+
+      <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
+        <Button
+          size="sm"
+          variant={selectedMonth === 'all' ? 'default' : 'outline'}
+          className={selectedMonth === 'all' ? 'bg-teal-600 hover:bg-teal-700' : ''}
+          onClick={() => setSelectedMonth('all')}
+        >
+          All
+        </Button>
+        {monthOptions.map((month) => (
+          <Button
+            key={month.key}
+            size="sm"
+            variant={selectedMonth === month.key ? 'default' : 'outline'}
+            className={selectedMonth === month.key ? 'bg-teal-600 hover:bg-teal-700' : ''}
+            onClick={() => setSelectedMonth(month.key)}
+          >
+            {month.label}
+          </Button>
+        ))}
+      </div>
       
       <div className="space-y-2">
-        {sessions.map((session) => {
+        {filteredSessions.map((session) => {
           const sessionProgress = progress.find(p => p.sessionId === session.id);
           
           return (
@@ -1790,14 +2006,42 @@ function TeacherSessionsList({ onSelectSession }: { onSelectSession: (session: S
 // ============ TEACHER RESOURCES ============
 function TeacherResources() {
   const sessions = useSessions();
+  const selectedMonth = useAppStore((state) => state.selectedMonth);
+  const setSelectedMonth = useAppStore((state) => state.setSelectedMonth);
+  const monthOptions = getMonthOptions(sessions);
+  const filteredSessions = selectedMonth === 'all'
+    ? sessions
+    : sessions.filter((session) => getMonthKeyFromDate(session.date) === selectedMonth);
   
   // Aggregate all resources
-  const allVocab = sessions.flatMap(s => s.vocab);
-  const allPhrases = sessions.flatMap(s => s.phrases);
+  const allVocab = filteredSessions.flatMap(s => s.vocab);
+  const allPhrases = filteredSessions.flatMap(s => s.phrases);
   
   return (
     <div className="p-3 sm:p-4 space-y-4 sm:space-y-6 pb-20">
       <h2 className="text-xl sm:text-2xl font-bold text-slate-800">Resources</h2>
+
+      <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
+        <Button
+          size="sm"
+          variant={selectedMonth === 'all' ? 'default' : 'outline'}
+          className={selectedMonth === 'all' ? 'bg-teal-600 hover:bg-teal-700' : ''}
+          onClick={() => setSelectedMonth('all')}
+        >
+          All
+        </Button>
+        {monthOptions.map((month) => (
+          <Button
+            key={month.key}
+            size="sm"
+            variant={selectedMonth === month.key ? 'default' : 'outline'}
+            className={selectedMonth === month.key ? 'bg-teal-600 hover:bg-teal-700' : ''}
+            onClick={() => setSelectedMonth(month.key)}
+          >
+            {month.label}
+          </Button>
+        ))}
+      </div>
       
       {/* Phrase Bank */}
       <Card>
@@ -1846,7 +2090,7 @@ function TeacherResources() {
           <CardDescription className="text-xs sm:text-sm">Generate printable materials</CardDescription>
         </CardHeader>
         <CardContent className="space-y-2 px-3 sm:px-4 pb-3 sm:pb-4">
-          {sessions.map((session) => (
+          {filteredSessions.map((session) => (
             <Button
               key={session.id}
               variant="outline"

@@ -16,6 +16,7 @@ interface AppState {
   studentPassword: string;
   favoritePhraseIds: string[];
   phrasebook: PhraseItem[];
+  selectedMonth: string; // 'all' or 'YYYY-MM'
   
   // Current view
   currentView: 'landing' | 'student' | 'teacher';
@@ -25,6 +26,7 @@ interface AppState {
   unlock: (password: string, role: 'teacher' | 'student') => boolean;
   lock: () => void;
   setCurrentView: (view: 'landing' | 'student' | 'teacher') => void;
+  setSelectedMonth: (month: string) => void;
   
   // Session actions
   updateSession: (sessionId: string, updates: Partial<Session>) => void;
@@ -47,6 +49,41 @@ interface AppState {
   updatePassword: (role: 'teacher' | 'student', newPassword: string) => void;
 }
 
+function mergeSeedSessions(savedSessions?: Session[]): Session[] {
+  const byId = new Map<string, Session>();
+  const seedIds = new Set(initialAppData.sessions.map((session) => session.id));
+
+  // Use seed sessions as canonical curriculum content so translation/content fixes propagate.
+  for (const seedSession of initialAppData.sessions) {
+    byId.set(seedSession.id, seedSession);
+  }
+
+  // Keep user-created custom sessions (ids not part of seed curriculum).
+  for (const session of savedSessions ?? []) {
+    if (!seedIds.has(session.id)) {
+      byId.set(session.id, session);
+    }
+  }
+
+  return Array.from(byId.values()).sort((a, b) => a.number - b.number);
+}
+
+function mergeSeedPhrases(savedPhrases?: PhraseItem[]): PhraseItem[] {
+  const byId = new Map<string, PhraseItem>();
+
+  for (const phrase of savedPhrases ?? []) {
+    byId.set(phrase.id, phrase);
+  }
+
+  for (const seedPhrase of initialAppData.phrasebook) {
+    if (!byId.has(seedPhrase.id)) {
+      byId.set(seedPhrase.id, seedPhrase);
+    }
+  }
+
+  return Array.from(byId.values());
+}
+
 export const useAppStore = create<AppState>()(
   persist(
     (set, get) => ({
@@ -60,6 +97,7 @@ export const useAppStore = create<AppState>()(
       studentPassword: initialAppData.studentPassword,
       favoritePhraseIds: [],
       phrasebook: initialAppData.phrasebook,
+      selectedMonth: 'all',
       currentView: 'landing',
       
       // Actions
@@ -78,6 +116,7 @@ export const useAppStore = create<AppState>()(
       lock: () => set({ userRole: null, isUnlocked: false, currentView: 'landing' }),
       
       setCurrentView: (view) => set({ currentView: view }),
+      setSelectedMonth: (month) => set({ selectedMonth: month }),
       
       updateSession: (sessionId, updates) => {
         set((state) => ({
@@ -180,7 +219,23 @@ export const useAppStore = create<AppState>()(
         studentPassword: state.studentPassword,
         favoritePhraseIds: state.favoritePhraseIds,
         phrasebook: state.phrasebook,
+        selectedMonth: state.selectedMonth,
       }),
+      merge: (persistedState, currentState) => {
+        const persisted = persistedState as Partial<AppState>;
+        return {
+          ...currentState,
+          ...persisted,
+          sessions: mergeSeedSessions(persisted.sessions),
+          phrasebook: mergeSeedPhrases(persisted.phrasebook),
+          submissions: persisted.submissions ?? currentState.submissions,
+          progress: persisted.progress ?? currentState.progress,
+          teacherPassword: persisted.teacherPassword ?? currentState.teacherPassword,
+          studentPassword: persisted.studentPassword ?? currentState.studentPassword,
+          favoritePhraseIds: persisted.favoritePhraseIds ?? currentState.favoritePhraseIds,
+          selectedMonth: persisted.selectedMonth ?? currentState.selectedMonth,
+        };
+      },
     }
   )
 );

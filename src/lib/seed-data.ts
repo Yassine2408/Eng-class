@@ -987,7 +987,668 @@ export const sessions: Session[] = [
       ]
     },
     answerKey: 'Exercise 1: a, b, b, b, b, b\nExercise 2: All matched correctly\nExercise 3: Dialogue practice',
-    teacherNotes: 'This is the last session. Celebrate progress! Review key topics. Encourage continued practice.'
+    teacherNotes: 'End of Month 1. Celebrate progress and prepare the student for Month 2 topics.'
+  },
+  {
+    id: 'session-9',
+    number: 9,
+    date: '2026-04-01',
+    title: 'Public Transport + Tickets',
+    goal: 'Buy tickets, ask about routes, and understand schedule information.',
+    vocab: [
+      { id: genId(), word: 'Ticket machine', meaning: 'آلة شراء التذاكر', example: 'Use the ticket machine to buy a pass.', category: 'transport' },
+      { id: genId(), word: 'Platform', meaning: 'رصيف / منصة انتظار القطار', example: 'The train leaves from platform 3.', category: 'transport' },
+      { id: genId(), word: 'One-way', meaning: 'تذكرة ذهاب فقط', example: 'I need a one-way ticket.', category: 'transport' },
+      { id: genId(), word: 'Round trip', meaning: 'تذكرة ذهاب وإياب', example: 'A round trip is cheaper.', category: 'transport' },
+      { id: genId(), word: 'Transfer', meaning: 'تبديل الخط / انتقال', example: 'You need one transfer.', category: 'transport' },
+      { id: genId(), word: 'Delay', meaning: 'تأخير', example: 'There is a 10-minute delay.', category: 'transport' },
+    ],
+    phrases: [
+      { id: genId(), phrase: 'Where can I buy a metro ticket?', translation: 'أين يمكنني شراء تذكرة المترو؟', situation: 'Buying ticket' },
+      { id: genId(), phrase: 'Is this train going downtown?', translation: 'هل هذا القطار متجه إلى وسط المدينة؟', situation: 'Checking route' },
+      { id: genId(), phrase: 'Which platform do I need?', translation: 'أي رصيف أحتاج؟', situation: 'At station' },
+      { id: genId(), phrase: 'How much is a day pass?', translation: 'بكم تذكرة اليوم الكامل؟', situation: 'Pricing' },
+      { id: genId(), phrase: 'Do I need to transfer?', translation: 'هل أحتاج إلى تبديل الخط؟', situation: 'Navigation' },
+      { id: genId(), phrase: 'What time is the last bus?', translation: 'متى آخر حافلة؟', situation: 'Timing' },
+      { id: genId(), phrase: 'Does this ticket include transfers?', translation: 'هل تشمل هذه التذكرة تبديل الخطوط؟', situation: 'Tickets' },
+      { id: genId(), phrase: 'Is this the right line for the airport?', translation: 'هل هذا هو الخط الصحيح إلى المطار؟', situation: 'Checking route' },
+    ],
+    grammar: {
+      title: 'Wh- Questions for Transport',
+      explanation: 'Use where/which/how much/what time to ask for practical travel information.',
+      examples: [
+        'Where is the ticket machine?',
+        'Which platform goes to the airport?',
+        'How much is a one-way ticket?',
+        'What time is the next train?',
+      ]
+    },
+    lessonSteps: [
+      { id: genId(), title: 'Warm-up', duration: 5, description: 'Talk about transport in your city.' },
+      { id: genId(), title: 'Vocabulary', duration: 10, description: 'Core transport words and meanings.' },
+      { id: genId(), title: 'Functional Phrases', duration: 10, description: 'Practice useful ticket and route questions.' },
+      { id: genId(), title: 'Exercises', duration: 20, description: 'Complete listening and speaking drills.' },
+      { id: genId(), title: 'Roleplay', duration: 15, description: 'At a metro station ticket office.' },
+    ],
+    exercises: [
+      {
+        id: genId(),
+        type: 'multiple-choice',
+        title: 'Choose the Best Question',
+        instruction: 'Choose the correct sentence for each situation.',
+        content: {
+          questions: [
+            { id: genId(), question: 'You want to know the price:', options: ['Where ticket?', 'How much is a ticket?', 'Ticket now.'], correctIndex: 1 },
+            { id: genId(), question: 'You need the location:', options: ['Where is platform 4?', 'Platform 4 where is?', 'It is platform?'], correctIndex: 0 },
+            { id: genId(), question: 'You ask about time:', options: ['What time is the next train?', 'Train what time?', 'When train you?'], correctIndex: 0 },
+          ]
+        },
+        answerKey: '1.b 2.a 3.a'
+      },
+      {
+        id: genId(),
+        type: 'fill-blank',
+        title: 'Station Dialogue',
+        instruction: 'Complete with: where, much, platform, transfer, time',
+        content: {
+          sentences: [
+            { id: genId(), text: 'Excuse me, ___ is the ticket machine?', answer: 'where' },
+            { id: genId(), text: 'How ___ is a one-way ticket?', answer: 'much' },
+            { id: genId(), text: 'Which ___ goes to the airport?', answer: 'platform' },
+            { id: genId(), text: 'Do I need to ___ at Central Station?', answer: 'transfer' },
+            { id: genId(), text: 'What ___ is the last bus?', answer: 'time' },
+          ]
+        },
+        answerKey: 'where, much, platform, transfer, time'
+      }
+    ],
+    homework: [
+      { id: genId(), task: 'Write 8 transport questions for a tourist.', type: 'writing', details: 'Use where/which/how much/what time.' },
+      { id: genId(), task: 'Record a 1-minute station conversation.', type: 'recording', details: 'Include buying a ticket and asking platform.' },
+    ],
+    roleplay: {
+      title: 'At the Ticket Office',
+      situation: 'You need to go to the airport by train and you are not sure which ticket to buy.',
+      studentRole: 'Traveler',
+      teacherRole: 'Ticket clerk',
+      script: [
+        { speaker: 'student', line: 'Hello, I need to go to the airport. Can you help me?', cue: 'Ask for help' },
+        { speaker: 'teacher', line: 'Sure. One-way or round trip?' },
+        { speaker: 'student', line: 'Round trip, please. How much is it?', cue: 'Ask price' },
+        { speaker: 'teacher', line: 'It is 12 dollars. Platform 5.' },
+        { speaker: 'student', line: 'Do I need to transfer?', cue: 'Ask route detail' },
+        { speaker: 'teacher', line: 'Yes, transfer once at Central. The train leaves in 10 minutes.' },
+      ]
+    },
+    answerKey: 'Exercise 1: b, a, a. Exercise 2: where, much, platform, transfer, time.',
+    teacherNotes: 'Focus on confidence in asking clear transport questions.'
+  },
+  {
+    id: 'session-10',
+    number: 10,
+    date: '2026-04-04',
+    title: 'Shopping + Returns',
+    goal: 'Ask about sizes, pay, and handle return or exchange situations.',
+    vocab: [
+      { id: genId(), word: 'Receipt', meaning: 'إيصال الشراء', category: 'shopping' },
+      { id: genId(), word: 'Exchange', meaning: 'استبدال المنتج', category: 'shopping' },
+      { id: genId(), word: 'Refund', meaning: 'استرجاع المال', category: 'shopping' },
+      { id: genId(), word: 'Fitting room', meaning: 'غرفة القياس', category: 'shopping' },
+      { id: genId(), word: 'Cashier', meaning: 'أمين الصندوق', category: 'shopping' },
+    ],
+    phrases: [
+      { id: genId(), phrase: 'Can I try this on?', translation: 'هل يمكنني تجربة هذا؟', situation: 'Shopping' },
+      { id: genId(), phrase: 'Do you have this in medium?', translation: 'هل لديكم هذا بمقاس متوسط؟', situation: 'Shopping' },
+      { id: genId(), phrase: 'I would like to return this item.', translation: 'أود إرجاع هذا المنتج.', situation: 'Returns' },
+      { id: genId(), phrase: 'Can I exchange it for a larger size?', translation: 'هل يمكنني استبداله بمقاس أكبر؟', situation: 'Returns' },
+      { id: genId(), phrase: 'Could I get a receipt, please?', translation: 'هل يمكنني الحصول على إيصال من فضلك؟', situation: 'Checkout' },
+      { id: genId(), phrase: 'This item is damaged.', translation: 'هذا المنتج تالف.', situation: 'Returns' },
+      { id: genId(), phrase: 'Is there a return policy?', translation: 'هل توجد سياسة للإرجاع؟', situation: 'Shopping policy' },
+    ],
+    grammar: {
+      title: 'Polite Requests with Could I / I would like',
+      explanation: 'Use polite forms in customer service interactions.',
+      examples: ['Could I try this on?', 'I would like a refund, please.']
+    },
+    lessonSteps: [
+      { id: genId(), title: 'Vocabulary', duration: 10, description: 'Shopping and returns vocabulary.' },
+      { id: genId(), title: 'Phrases', duration: 10, description: 'Practice polite request patterns.' },
+      { id: genId(), title: 'Exercises', duration: 20, description: 'Short practical dialogues.' },
+      { id: genId(), title: 'Roleplay', duration: 15, description: 'Returning a shirt.' },
+    ],
+    exercises: [
+      {
+        id: genId(),
+        type: 'matching',
+        title: 'Match Phrase to Situation',
+        instruction: 'Connect each phrase to the correct use case.',
+        content: {
+          pairs: [
+            { id: genId(), left: 'Can I try this on?', right: 'Trying clothes' },
+            { id: genId(), left: 'I would like to return this item.', right: 'Returning a purchase' },
+            { id: genId(), left: 'Can I exchange it?', right: 'Changing size' },
+          ]
+        },
+        answerKey: 'All pairs as listed.'
+      },
+      {
+        id: genId(),
+        type: 'multiple-choice',
+        title: 'Most Polite Option',
+        instruction: 'Choose the most natural sentence.',
+        content: {
+          questions: [
+            { id: genId(), question: 'At checkout:', options: ['Receipt me.', 'Could I get a receipt, please?', 'Paper now.'], correctIndex: 1 },
+            { id: genId(), question: 'Wrong size:', options: ['Can I exchange it for a larger size?', 'No size.', 'Change this.'], correctIndex: 0 },
+          ]
+        },
+        answerKey: '1.b 2.a'
+      }
+    ],
+    homework: [
+      { id: genId(), task: 'Write 6 polite shopping requests.', type: 'writing', details: 'Use Could I and I would like.' },
+      { id: genId(), task: 'Record a 45-second return request.', type: 'recording', details: 'Use clear and polite language.' },
+    ],
+    roleplay: {
+      title: 'Returning a Shirt',
+      situation: 'You bought a shirt yesterday, but it is too small.',
+      studentRole: 'Customer',
+      teacherRole: 'Store assistant',
+      script: [
+        { speaker: 'student', line: 'Hi, I would like to return this shirt.', cue: 'State request' },
+        { speaker: 'teacher', line: 'Sure. Do you have the receipt?' },
+        { speaker: 'student', line: 'Yes, and can I exchange it for a larger size?', cue: 'Ask for exchange' },
+        { speaker: 'teacher', line: 'Of course. Here is the larger size.' },
+      ]
+    },
+    answerKey: 'Matching + MCQ as listed.',
+    teacherNotes: 'Reinforce natural polite tone in service conversations.'
+  },
+  {
+    id: 'session-11',
+    number: 11,
+    date: '2026-04-08',
+    title: 'Restaurant Problems + Preferences',
+    goal: 'Handle order mistakes and explain food preferences politely.',
+    vocab: [
+      { id: genId(), word: 'Ingredient', meaning: 'مكوّن', category: 'food' },
+      { id: genId(), word: 'Spicy', meaning: 'حار', category: 'food' },
+      { id: genId(), word: 'Allergy', meaning: 'حساسية', category: 'food' },
+      { id: genId(), word: 'Recommend', meaning: 'يوصي / يقترح', category: 'food' },
+      { id: genId(), word: 'Separate bill', meaning: 'فاتورة منفصلة', category: 'food' },
+    ],
+    phrases: [
+      { id: genId(), phrase: 'Sorry, this is not what I ordered.', translation: 'عذراً، هذا ليس ما طلبته.', situation: 'Restaurant problem' },
+      { id: genId(), phrase: 'Could you make it less spicy?', translation: 'هل يمكن أن يكون أقل حدة؟', situation: 'Preference' },
+      { id: genId(), phrase: 'I am allergic to nuts.', translation: 'لدي حساسية من المكسرات.', situation: 'Allergy' },
+      { id: genId(), phrase: 'What do you recommend?', translation: 'ماذا تنصحني؟', situation: 'Ordering' },
+      { id: genId(), phrase: 'Could we have separate bills?', translation: 'هل يمكننا الحصول على فواتير منفصلة؟', situation: 'Payment' },
+      { id: genId(), phrase: 'Can I see the ingredients, please?', translation: 'هل يمكنني رؤية المكوّنات من فضلك؟', situation: 'Dietary' },
+      { id: genId(), phrase: 'I would like this without onions.', translation: 'أود هذا الطبق بدون بصل.', situation: 'Preference' },
+    ],
+    grammar: {
+      title: 'Could you + verb',
+      explanation: 'Use this form for polite requests in restaurants.',
+      examples: ['Could you change this dish?', 'Could you bring some water?']
+    },
+    lessonSteps: [
+      { id: genId(), title: 'Vocabulary', duration: 10, description: 'Food quality and preference terms.' },
+      { id: genId(), title: 'Phrases', duration: 10, description: 'Polite correction language.' },
+      { id: genId(), title: 'Exercises', duration: 20, description: 'Restaurant scenarios.' },
+      { id: genId(), title: 'Roleplay', duration: 15, description: 'Wrong order case.' },
+    ],
+    exercises: [
+      {
+        id: genId(),
+        type: 'fill-blank',
+        title: 'Restaurant Fixes',
+        instruction: 'Complete with: ordered, spicy, allergic, recommend',
+        content: {
+          sentences: [
+            { id: genId(), text: 'This is not what I ___.', answer: 'ordered' },
+            { id: genId(), text: 'Could you make it less ___?', answer: 'spicy' },
+            { id: genId(), text: 'I am ___ to seafood.', answer: 'allergic' },
+            { id: genId(), text: 'What do you ___?', answer: 'recommend' },
+          ]
+        },
+        answerKey: 'ordered, spicy, allergic, recommend'
+      },
+      {
+        id: genId(),
+        type: 'multiple-choice',
+        title: 'Most Polite Response',
+        instruction: 'Choose the best sentence.',
+        content: {
+          questions: [
+            { id: genId(), question: 'Wrong dish arrives:', options: ['Wrong.', 'Sorry, this is not what I ordered.', 'No.'], correctIndex: 1 },
+            { id: genId(), question: 'Need less spice:', options: ['No spicy.', 'Could you make it less spicy, please?', 'Hot.'], correctIndex: 1 },
+          ]
+        },
+        answerKey: '1.b 2.b'
+      }
+    ],
+    homework: [
+      { id: genId(), task: 'Write 5 polite restaurant requests.', type: 'writing', details: 'Include allergy and correction examples.' },
+      { id: genId(), task: 'Record a 1-minute restaurant dialogue.', type: 'recording', details: 'Use polite tone.' },
+    ],
+    roleplay: {
+      title: 'Wrong Order at Dinner',
+      situation: 'You ordered fish but received chicken.',
+      studentRole: 'Customer',
+      teacherRole: 'Waiter',
+      script: [
+        { speaker: 'student', line: 'Excuse me, this is not what I ordered.', cue: 'Correct politely' },
+        { speaker: 'teacher', line: 'I am sorry. What did you order?' },
+        { speaker: 'student', line: 'I ordered fish. Could you change it, please?', cue: 'Request replacement' },
+        { speaker: 'teacher', line: 'Of course. We will replace it now.' },
+      ]
+    },
+    answerKey: 'Exercises as listed.',
+    teacherNotes: 'Coach student to stay polite even during complaints.'
+  },
+  {
+    id: 'session-12',
+    number: 12,
+    date: '2026-04-11',
+    title: 'City Navigation + Landmarks',
+    goal: 'Ask and give longer directions using landmarks and sequence words.',
+    vocab: [
+      { id: genId(), word: 'Intersection', meaning: 'تقاطع طرق', category: 'directions' },
+      { id: genId(), word: 'Across from', meaning: 'مقابل', category: 'directions' },
+      { id: genId(), word: 'Next to', meaning: 'بجانب', category: 'directions' },
+      { id: genId(), word: 'Landmark', meaning: 'معلم معروف للاستدلال', category: 'directions' },
+      { id: genId(), word: 'Shortcut', meaning: 'طريق مختصر', category: 'directions' },
+    ],
+    phrases: [
+      { id: genId(), phrase: 'Go straight for two blocks.', translation: 'امشِ مباشرةً لمسافتين.', situation: 'Directions' },
+      { id: genId(), phrase: 'Turn left at the second traffic light.', translation: 'انعطف يساراً عند إشارة المرور الثانية.', situation: 'Directions' },
+      { id: genId(), phrase: 'It is next to the post office.', translation: 'إنه بجانب مكتب البريد.', situation: 'Landmarks' },
+      { id: genId(), phrase: 'Could you show me on the map?', translation: 'هل يمكنك أن تريني على الخريطة؟', situation: 'Clarification' },
+      { id: genId(), phrase: 'How long does it take on foot?', translation: 'كم يستغرق الوصول سيراً على الأقدام؟', situation: 'Time' },
+      { id: genId(), phrase: 'Should I turn right at the bank?', translation: 'هل أنعطف يميناً عند البنك؟', situation: 'Confirmation' },
+      { id: genId(), phrase: 'Is it near or far from here?', translation: 'هل هو قريب أم بعيد من هنا؟', situation: 'Distance' },
+    ],
+    grammar: {
+      title: 'Sequence words',
+      explanation: 'Use first, then, after that, finally to guide someone clearly.',
+      examples: ['First go straight.', 'Then turn right.', 'Finally, it is on your left.']
+    },
+    lessonSteps: [
+      { id: genId(), title: 'Vocabulary', duration: 10, description: 'Direction and landmark terms.' },
+      { id: genId(), title: 'Grammar', duration: 10, description: 'Sequencing directions.' },
+      { id: genId(), title: 'Exercises', duration: 20, description: 'Map-based direction drills.' },
+      { id: genId(), title: 'Roleplay', duration: 15, description: 'Helping a lost tourist.' },
+    ],
+    exercises: [
+      {
+        id: genId(),
+        type: 'dialogue-builder',
+        title: 'Order the Direction Steps',
+        instruction: 'Put the lines in the correct order.',
+        content: {
+          lines: [
+            { id: genId(), speaker: 'local', text: 'Finally, you will see the museum on your right.', correctOrder: 4 },
+            { id: genId(), speaker: 'local', text: 'First, go straight for one block.', correctOrder: 1 },
+            { id: genId(), speaker: 'local', text: 'After that, cross the bridge.', correctOrder: 3 },
+            { id: genId(), speaker: 'local', text: 'Then turn left at the bank.', correctOrder: 2 },
+          ]
+        },
+        answerKey: '1 First, 2 Then, 3 After that, 4 Finally.'
+      },
+      {
+        id: genId(),
+        type: 'matching',
+        title: 'Landmark Meanings',
+        instruction: 'Match phrase to meaning.',
+        content: {
+          pairs: [
+            { id: genId(), left: 'Across from', right: 'Opposite side' },
+            { id: genId(), left: 'Next to', right: 'Beside' },
+            { id: genId(), left: 'Intersection', right: 'Road crossing' },
+          ]
+        },
+        answerKey: 'All pairs as listed.'
+      }
+    ],
+    homework: [
+      { id: genId(), task: 'Describe a route from your home to a landmark.', type: 'writing', details: 'Use sequence words.' },
+      { id: genId(), task: 'Record spoken directions (45-60 sec).', type: 'recording', details: 'Clear step-by-step explanation.' },
+    ],
+    roleplay: {
+      title: 'Helping a Tourist',
+      situation: 'A tourist asks for directions to the history museum.',
+      studentRole: 'Helpful local',
+      teacherRole: 'Tourist',
+      script: [
+        { speaker: 'teacher', line: 'Excuse me, how can I get to the history museum?' },
+        { speaker: 'student', line: 'First, go straight for two blocks.', cue: 'Start sequence' },
+        { speaker: 'teacher', line: 'Then what?' },
+        { speaker: 'student', line: 'Then turn right at the church. Finally, it is next to the park.', cue: 'Finish route' },
+      ]
+    },
+    answerKey: 'Dialogue order + matching as listed.',
+    teacherNotes: 'Push complete multi-step answers instead of short responses.'
+  },
+  {
+    id: 'session-13',
+    number: 13,
+    date: '2026-04-15',
+    title: 'Phone Calls + Reservations',
+    goal: 'Make simple phone calls and reserve tables, rooms, or tickets.',
+    vocab: [
+      { id: genId(), word: 'Reservation', meaning: 'حجز مسبق', category: 'booking' },
+      { id: genId(), word: 'Available', meaning: 'متاح', category: 'booking' },
+      { id: genId(), word: 'Confirm', meaning: 'تأكيد', category: 'booking' },
+      { id: genId(), word: 'Cancel', meaning: 'إلغاء', category: 'booking' },
+      { id: genId(), word: 'Hold on', meaning: 'انتظر لحظة', category: 'phone' },
+    ],
+    phrases: [
+      { id: genId(), phrase: 'Hello, I would like to make a reservation.', translation: 'مرحباً، أود إجراء حجز.', situation: 'Phone call' },
+      { id: genId(), phrase: 'Do you have any rooms available?', translation: 'هل لديكم غرف متاحة؟', situation: 'Hotel booking' },
+      { id: genId(), phrase: 'I would like to book a table for two.', translation: 'أود حجز طاولة لشخصين.', situation: 'Restaurant booking' },
+      { id: genId(), phrase: 'Could you confirm the date and time?', translation: 'هل يمكنك تأكيد التاريخ والوقت؟', situation: 'Confirmation' },
+      { id: genId(), phrase: 'I need to cancel my reservation.', translation: 'أحتاج إلى إلغاء حجزي.', situation: 'Cancellation' },
+      { id: genId(), phrase: 'Could you spell your name, please?', translation: 'هل يمكنك تهجئة اسمك من فضلك؟', situation: 'Phone clarification' },
+      { id: genId(), phrase: 'Can I get a confirmation email?', translation: 'هل يمكنني الحصول على بريد تأكيد؟', situation: 'Booking confirmation' },
+    ],
+    grammar: {
+      title: 'would like to + verb',
+      explanation: 'Use this structure for polite reservation requests.',
+      examples: ['I would like to book a room.', 'I would like to cancel my booking.']
+    },
+    lessonSteps: [
+      { id: genId(), title: 'Vocabulary', duration: 10, description: 'Reservation language.' },
+      { id: genId(), title: 'Grammar', duration: 10, description: 'Polite intent statements.' },
+      { id: genId(), title: 'Exercises', duration: 20, description: 'Phone call practice.' },
+      { id: genId(), title: 'Roleplay', duration: 15, description: 'Hotel booking call.' },
+    ],
+    exercises: [
+      {
+        id: genId(),
+        type: 'multiple-choice',
+        title: 'Booking Calls',
+        instruction: 'Choose the best line for each case.',
+        content: {
+          questions: [
+            { id: genId(), question: 'Start a call politely:', options: ['Room now.', 'Hello, I would like to make a reservation.', 'Book me.'], correctIndex: 1 },
+            { id: genId(), question: 'Check availability:', options: ['Do you have any rooms available?', 'Any room?', 'Room yes?'], correctIndex: 0 },
+          ]
+        },
+        answerKey: '1.b 2.a'
+      },
+      {
+        id: genId(),
+        type: 'speaking-prompt',
+        title: 'Reservation Drill',
+        instruction: 'Practice a 60-second booking call.',
+        content: {
+          prompt: 'Call a hotel to reserve a room for two nights and confirm details.',
+          duration: 60,
+          suggestedPoints: ['Greeting', 'Dates', 'Room type', 'Confirmation']
+        },
+        answerKey: 'Student covers all key points clearly.'
+      }
+    ],
+    homework: [
+      { id: genId(), task: 'Write one booking call script and one cancellation script.', type: 'writing', details: '8-10 lines each.' },
+      { id: genId(), task: 'Record a 1-minute booking call.', type: 'recording', details: 'Use clear polite phrases.' },
+    ],
+    roleplay: {
+      title: 'Hotel Reservation Call',
+      situation: 'You call a hotel to reserve a room for this weekend.',
+      studentRole: 'Guest',
+      teacherRole: 'Receptionist',
+      script: [
+        { speaker: 'student', line: 'Hello, I would like to make a reservation for this weekend.', cue: 'Start call' },
+        { speaker: 'teacher', line: 'Certainly. For how many nights?' },
+        { speaker: 'student', line: 'Two nights. Could you confirm availability?', cue: 'Ask details' },
+        { speaker: 'teacher', line: 'Yes, we have a room available.' },
+      ]
+    },
+    answerKey: 'MCQ and speaking prompt as listed.',
+    teacherNotes: 'Practice both slow and normal call speed.'
+  },
+  {
+    id: 'session-14',
+    number: 14,
+    date: '2026-04-18',
+    title: 'Small Talk + Social Confidence',
+    goal: 'Start and maintain short friendly conversations in travel contexts.',
+    vocab: [
+      { id: genId(), word: 'Hometown', meaning: 'المدينة الأصلية', category: 'social' },
+      { id: genId(), word: 'Hobby', meaning: 'هواية', category: 'social' },
+      { id: genId(), word: 'Occupation', meaning: 'المهنة', category: 'social' },
+      { id: genId(), word: 'Recommend', meaning: 'يوصي / يقترح', category: 'social' },
+      { id: genId(), word: 'Conversation', meaning: 'محادثة', category: 'social' },
+    ],
+    phrases: [
+      { id: genId(), phrase: 'Is this your first time here?', translation: 'هل هذه أول مرة لك هنا؟', situation: 'Small talk' },
+      { id: genId(), phrase: 'What do you usually do on weekends?', translation: 'ماذا تفعل عادة في عطلة نهاية الأسبوع؟', situation: 'Small talk' },
+      { id: genId(), phrase: 'Do you have any recommendations?', translation: 'هل لديك أي توصيات؟', situation: 'Travel chat' },
+      { id: genId(), phrase: 'That sounds interesting.', translation: 'هذا يبدو ممتعاً.', situation: 'Response' },
+      { id: genId(), phrase: 'It was nice talking to you.', translation: 'سعدت بالحديث معك.', situation: 'Closing' },
+      { id: genId(), phrase: 'What brings you to this city?', translation: 'ما الذي جاء بك إلى هذه المدينة؟', situation: 'Small talk' },
+      { id: genId(), phrase: 'I am here for a short vacation.', translation: 'أنا هنا في عطلة قصيرة.', situation: 'Travel chat' },
+    ],
+    grammar: {
+      title: 'Present simple for habits',
+      explanation: 'Use present simple to describe routines and interests.',
+      examples: ['I usually travel in summer.', 'We often go out on weekends.']
+    },
+    lessonSteps: [
+      { id: genId(), title: 'Vocabulary', duration: 10, description: 'Social conversation words.' },
+      { id: genId(), title: 'Grammar', duration: 10, description: 'Present simple for routine topics.' },
+      { id: genId(), title: 'Exercises', duration: 20, description: 'Question and follow-up practice.' },
+      { id: genId(), title: 'Roleplay', duration: 15, description: 'Conversation at a cafe.' },
+    ],
+    exercises: [
+      {
+        id: genId(),
+        type: 'multiple-choice',
+        title: 'Friendly Responses',
+        instruction: 'Choose the best response.',
+        content: {
+          questions: [
+            { id: genId(), question: 'Someone says: "I love hiking."', options: ['No.', 'That sounds interesting!', 'Okay bye.'], correctIndex: 1 },
+            { id: genId(), question: 'You want advice:', options: ['Advice now.', 'Do you have any recommendations?', 'Tell me thing.'], correctIndex: 1 },
+          ]
+        },
+        answerKey: '1.b 2.b'
+      },
+      {
+        id: genId(),
+        type: 'speaking-prompt',
+        title: 'Two-Minute Small Talk',
+        instruction: 'Speak naturally with follow-up questions.',
+        content: {
+          prompt: 'Start a conversation with a traveler at a cafe and keep it going.',
+          duration: 120,
+          suggestedPoints: ['Where from', 'Reason for travel', 'Hobbies', 'Recommendations']
+        },
+        answerKey: 'Student asks at least 4 follow-up questions.'
+      }
+    ],
+    homework: [
+      { id: genId(), task: 'Prepare 10 small-talk questions.', type: 'writing', details: 'Prefer open questions.' },
+      { id: genId(), task: 'Record a 90-second intro + chat starter.', type: 'recording', details: 'Use natural tone.' },
+    ],
+    roleplay: {
+      title: 'Meeting at a Cafe',
+      situation: 'You sit near another traveler and start chatting.',
+      studentRole: 'Traveler 1',
+      teacherRole: 'Traveler 2',
+      script: [
+        { speaker: 'student', line: 'Hi, is this seat free?', cue: 'Open politely' },
+        { speaker: 'teacher', line: 'Yes. Are you visiting this city?' },
+        { speaker: 'student', line: 'Yes, it is my first time here. How about you?', cue: 'Respond and ask back' },
+        { speaker: 'teacher', line: 'I come here often for work.' },
+      ]
+    },
+    answerKey: 'Exercises as listed.',
+    teacherNotes: 'Encourage follow-up questions and active listening signals.'
+  },
+  {
+    id: 'session-15',
+    number: 15,
+    date: '2026-04-22',
+    title: 'Travel Problems + Solutions',
+    goal: 'Explain travel problems clearly and negotiate practical solutions.',
+    vocab: [
+      { id: genId(), word: 'Lost luggage', meaning: 'أمتعة مفقودة', category: 'problems' },
+      { id: genId(), word: 'Cancelled', meaning: 'ملغى', category: 'problems' },
+      { id: genId(), word: 'Compensation', meaning: 'تعويض', category: 'problems' },
+      { id: genId(), word: 'Voucher', meaning: 'قسيمة', category: 'problems' },
+      { id: genId(), word: 'Urgent', meaning: 'عاجل', category: 'problems' },
+    ],
+    phrases: [
+      { id: genId(), phrase: 'My flight was cancelled. What are my options?', translation: 'تم إلغاء رحلتي. ما هي الخيارات المتاحة؟', situation: 'Airport issue' },
+      { id: genId(), phrase: 'My luggage did not arrive.', translation: 'لم تصل أمتعتي.', situation: 'Airport issue' },
+      { id: genId(), phrase: 'Could you help me file a report?', translation: 'هل يمكنك مساعدتي في تقديم بلاغ؟', situation: 'Support desk' },
+      { id: genId(), phrase: 'Is there any compensation available?', translation: 'هل يوجد أي تعويض متاح؟', situation: 'Negotiation' },
+      { id: genId(), phrase: 'Thank you for your help.', translation: 'شكراً على مساعدتك.', situation: 'Closing' },
+      { id: genId(), phrase: 'When can I expect an update?', translation: 'متى يمكنني أن أتوقع تحديثاً؟', situation: 'Follow-up' },
+      { id: genId(), phrase: 'Could you give me a reference number?', translation: 'هل يمكنك إعطائي رقم متابعة؟', situation: 'Support desk' },
+    ],
+    grammar: {
+      title: 'Past simple for reporting problems',
+      explanation: 'Use past simple to explain what happened, then make a polite request.',
+      examples: ['My flight was cancelled.', 'My bag did not arrive.', 'Could you help me?']
+    },
+    lessonSteps: [
+      { id: genId(), title: 'Vocabulary', duration: 10, description: 'Travel disruption terms.' },
+      { id: genId(), title: 'Grammar', duration: 10, description: 'Report + request structure.' },
+      { id: genId(), title: 'Exercises', duration: 20, description: 'Problem-solving speaking drills.' },
+      { id: genId(), title: 'Roleplay', duration: 15, description: 'Lost luggage desk.' },
+    ],
+    exercises: [
+      {
+        id: genId(),
+        type: 'fill-blank',
+        title: 'Support Desk Language',
+        instruction: 'Complete with: cancelled, arrive, report, urgent',
+        content: {
+          sentences: [
+            { id: genId(), text: 'My flight was ___.', answer: 'cancelled' },
+            { id: genId(), text: 'My luggage did not ___.', answer: 'arrive' },
+            { id: genId(), text: 'Could you help me file a ___?', answer: 'report' },
+            { id: genId(), text: 'This is ___ because I travel tonight.', answer: 'urgent' },
+          ]
+        },
+        answerKey: 'cancelled, arrive, report, urgent'
+      },
+      {
+        id: genId(),
+        type: 'multiple-choice',
+        title: 'Best Polite Request',
+        instruction: 'Choose the strongest practical sentence.',
+        content: {
+          questions: [
+            { id: genId(), question: 'Need immediate help:', options: ['Help.', 'Could you help me now? This is urgent.', 'Now.'], correctIndex: 1 },
+            { id: genId(), question: 'Need alternatives:', options: ['Else?', 'What are my options, please?', 'Option.'], correctIndex: 1 },
+          ]
+        },
+        answerKey: '1.b 2.b'
+      }
+    ],
+    homework: [
+      { id: genId(), task: 'Write two travel problem reports.', type: 'writing', details: 'Use problem + polite request format.' },
+      { id: genId(), task: 'Record a 1-minute airline support call.', type: 'recording', details: 'Clear and calm tone.' },
+    ],
+    roleplay: {
+      title: 'Lost Luggage Desk',
+      situation: 'Your suitcase did not arrive at baggage claim.',
+      studentRole: 'Passenger',
+      teacherRole: 'Airline support agent',
+      script: [
+        { speaker: 'student', line: 'Hello, my luggage did not arrive.', cue: 'State problem' },
+        { speaker: 'teacher', line: 'I am sorry to hear that. May I see your baggage tag?' },
+        { speaker: 'student', line: 'Yes. Could you help me file a report?', cue: 'Request action' },
+        { speaker: 'teacher', line: 'Of course. Please describe your suitcase.' },
+      ]
+    },
+    answerKey: 'Exercises as listed.',
+    teacherNotes: 'Prioritize clear and calm communication in stressful situations.'
+  },
+  {
+    id: 'session-16',
+    number: 16,
+    date: '2026-04-25',
+    title: 'Month 2 Final Simulation + Review',
+    goal: 'Combine all Month 2 skills in realistic end-to-end scenarios.',
+    vocab: [
+      { id: genId(), word: 'Scenario', meaning: 'سيناريو تدريبي', category: 'review' },
+      { id: genId(), word: 'Confident', meaning: 'واثق', category: 'review' },
+      { id: genId(), word: 'Clarify', meaning: 'يوضح', category: 'review' },
+      { id: genId(), word: 'Summarize', meaning: 'يلخّص', category: 'review' },
+      { id: genId(), word: 'Feedback', meaning: 'ملاحظات للتطوير', category: 'review' },
+    ],
+    phrases: [
+      { id: genId(), phrase: 'Let me explain the situation clearly.', translation: 'دعني أشرح الموقف بوضوح.', situation: 'Simulation' },
+      { id: genId(), phrase: 'Could you summarize the options?', translation: 'هل يمكنك تلخيص الخيارات؟', situation: 'Clarification' },
+      { id: genId(), phrase: 'I would prefer the fastest solution.', translation: 'أفضل الحل الأسرع.', situation: 'Decision making' },
+      { id: genId(), phrase: 'Could we go over that one more time?', translation: 'هل يمكننا مراجعة ذلك مرة أخرى؟', situation: 'Review' },
+      { id: genId(), phrase: 'I feel much more confident now.', translation: 'أشعر بثقة أكبر الآن.', situation: 'Reflection' },
+      { id: genId(), phrase: 'I can handle this situation now.', translation: 'أستطيع التعامل مع هذا الموقف الآن.', situation: 'Confidence' },
+      { id: genId(), phrase: 'Thank you for the feedback.', translation: 'شكراً على الملاحظات.', situation: 'Review' },
+    ],
+    grammar: {
+      title: 'Mixed review',
+      explanation: 'Combine present, past, and polite request patterns naturally.',
+      examples: ['My train was delayed, so I need help now.', 'Could you explain my options again?']
+    },
+    lessonSteps: [
+      { id: genId(), title: 'Review', duration: 10, description: 'Recap sessions 9-15.' },
+      { id: genId(), title: 'Scenario 1', duration: 15, description: 'Transport + directions.' },
+      { id: genId(), title: 'Scenario 2', duration: 15, description: 'Booking + service issue.' },
+      { id: genId(), title: 'Scenario 3', duration: 15, description: 'Problem solving and negotiation.' },
+      { id: genId(), title: 'Feedback', duration: 5, description: 'Celebrate progress and set next goals.' },
+    ],
+    exercises: [
+      {
+        id: genId(),
+        type: 'speaking-prompt',
+        title: 'Full Travel Simulation',
+        instruction: 'Complete a 3-minute simulation from station to hotel.',
+        content: {
+          prompt: 'Handle transport info, a booking issue, and a polite complaint with solution.',
+          duration: 180,
+          suggestedPoints: ['Clear problem', 'Polite request', 'Follow-up question', 'Confident close']
+        },
+        answerKey: 'Student completes all phases understandably.'
+      },
+      {
+        id: genId(),
+        type: 'multiple-choice',
+        title: 'Final Review Check',
+        instruction: 'Choose the best practical response.',
+        content: {
+          questions: [
+            { id: genId(), question: 'Need platform info:', options: ['Platform?', 'Which platform goes to the airport?', 'Tell track.'], correctIndex: 1 },
+            { id: genId(), question: 'Need repetition:', options: ['Again.', 'Could you repeat that more slowly, please?', 'Say.'], correctIndex: 1 },
+            { id: genId(), question: 'Lost luggage report:', options: ['Bag gone.', 'My luggage did not arrive. Could you help me file a report?', 'No bag.'], correctIndex: 1 },
+          ]
+        },
+        answerKey: '1.b 2.b 3.b'
+      }
+    ],
+    homework: [
+      { id: genId(), task: 'Write self-reflection after Month 2.', type: 'writing', details: 'Include strengths and next goals.' },
+      { id: genId(), task: 'Record final 2-minute travel day simulation.', type: 'recording', details: 'Use clear and confident speech.' },
+    ],
+    roleplay: {
+      title: 'End-to-End Travel Day',
+      situation: 'You arrive in a new city, use transport, handle booking, and solve a problem.',
+      studentRole: 'Traveler',
+      teacherRole: 'Service staff',
+      script: [
+        { speaker: 'student', line: 'Hello, which platform goes downtown?', cue: 'Transport step' },
+        { speaker: 'teacher', line: 'Platform 2. You need one transfer at Central.' },
+        { speaker: 'student', line: 'Thanks. I also need to confirm my hotel booking.', cue: 'Booking step' },
+        { speaker: 'teacher', line: 'Confirmed. Your room is ready after 3 PM.' },
+      ]
+    },
+    answerKey: 'Final review answers as listed.',
+    teacherNotes: 'End of Month 2 milestone. Celebrate progress and prepare Month 3.'
   }
 ];
 
