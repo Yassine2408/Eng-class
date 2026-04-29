@@ -992,7 +992,7 @@ export const sessions: Session[] = [
   {
     id: 'session-9',
     number: 9,
-    date: '2026-04-01',
+    date: '2026-04-02',
     title: 'Public Transport + Tickets',
     goal: 'Buy tickets, ask about routes, and understand schedule information.',
     vocab: [
@@ -1086,7 +1086,7 @@ export const sessions: Session[] = [
   {
     id: 'session-10',
     number: 10,
-    date: '2026-04-04',
+    date: '2026-04-03',
     title: 'Shopping + Returns',
     goal: 'Ask about sizes, pay, and handle return or exchange situations.',
     vocab: [
@@ -1167,7 +1167,7 @@ export const sessions: Session[] = [
   {
     id: 'session-11',
     number: 11,
-    date: '2026-04-08',
+    date: '2026-04-06',
     title: 'Restaurant Problems + Preferences',
     goal: 'Handle order mistakes and explain food preferences politely.',
     vocab: [
@@ -1249,7 +1249,7 @@ export const sessions: Session[] = [
   {
     id: 'session-12',
     number: 12,
-    date: '2026-04-11',
+    date: '2026-04-07',
     title: 'City Navigation + Landmarks',
     goal: 'Ask and give longer directions using landmarks and sequence words.',
     vocab: [
@@ -1332,7 +1332,7 @@ export const sessions: Session[] = [
   {
     id: 'session-13',
     number: 13,
-    date: '2026-04-15',
+    date: '2026-04-09',
     title: 'Phone Calls + Reservations',
     goal: 'Make simple phone calls and reserve tables, rooms, or tickets.',
     vocab: [
@@ -1411,7 +1411,7 @@ export const sessions: Session[] = [
   {
     id: 'session-14',
     number: 14,
-    date: '2026-04-18',
+    date: '2026-04-10',
     title: 'Small Talk + Social Confidence',
     goal: 'Start and maintain short friendly conversations in travel contexts.',
     vocab: [
@@ -1490,7 +1490,7 @@ export const sessions: Session[] = [
   {
     id: 'session-15',
     number: 15,
-    date: '2026-04-22',
+    date: '2026-04-13',
     title: 'Travel Problems + Solutions',
     goal: 'Explain travel problems clearly and negotiate practical solutions.',
     vocab: [
@@ -1572,7 +1572,7 @@ export const sessions: Session[] = [
   {
     id: 'session-16',
     number: 16,
-    date: '2026-04-25',
+    date: '2026-04-14',
     title: 'Month 2 Final Simulation + Review',
     goal: 'Combine all Month 2 skills in realistic end-to-end scenarios.',
     vocab: [
@@ -1650,10 +1650,800 @@ export const sessions: Session[] = [
     answerKey: 'Final review answers as listed.',
     teacherNotes: 'End of Month 2 milestone. Celebrate progress and prepare Month 3.'
   },
-  // ============ MONTH 3: MAY 2026 ============
+  // ============ MONTH 2 CONTINUED: APRIL WEEKS 3-4 ============
   {
     id: 'session-17',
     number: 17,
+    date: '2026-04-16',
+    title: 'At the Pharmacy + Health Emergencies',
+    goal: 'Describe symptoms, ask for medicine, and understand pharmacy instructions.',
+    vocab: [
+      { id: genId(), word: 'Symptom', meaning: 'عرض مرضي', example: 'My symptom is a bad cough.', category: 'health' },
+      { id: genId(), word: 'Prescription', meaning: 'وصفة طبية', example: 'I need a prescription for this medicine.', category: 'health' },
+      { id: genId(), word: 'Painkiller', meaning: 'مسكن ألم', example: 'Can I get some painkillers?', category: 'health' },
+      { id: genId(), word: 'Allergic', meaning: 'مصاب بحساسية', example: 'I am allergic to penicillin.', category: 'health' },
+      { id: genId(), word: 'Dosage', meaning: 'جرعة الدواء', example: 'What is the correct dosage?', category: 'health' },
+      { id: genId(), word: 'Side effect', meaning: 'عرض جانبي', example: 'Does this medicine have side effects?', category: 'health' },
+    ],
+    phrases: [
+      { id: genId(), phrase: 'I have a headache and a sore throat.', translation: 'عندي صداع والتهاب في الحلق.', situation: 'Describing symptoms' },
+      { id: genId(), phrase: 'Can I get this without a prescription?', translation: 'هل يمكنني الحصول على هذا بدون وصفة طبية؟', situation: 'At pharmacy' },
+      { id: genId(), phrase: 'How often should I take this?', translation: 'كم مرة يجب أن أتناول هذا؟', situation: 'Medicine instructions' },
+      { id: genId(), phrase: 'Are there any side effects?', translation: 'هل توجد أي آثار جانبية؟', situation: 'Asking about medicine' },
+      { id: genId(), phrase: 'I need something for a cold.', translation: 'أحتاج شيئاً للبرد.', situation: 'At pharmacy' },
+      { id: genId(), phrase: 'Does this interact with other medicine?', translation: 'هل هذا يتعارض مع أدوية أخرى؟', situation: 'Safety check' },
+    ],
+    grammar: {
+      title: 'Should / Must for Health Advice',
+      explanation: '"Should" gives advice (you should rest). "Must" gives strong obligation (you must take this medicine every day).',
+      examples: [
+        'You should drink more water.',
+        'She must take the medicine with food.',
+        'I shouldn\'t eat dairy with this antibiotic.',
+        'You must finish the whole course.',
+      ]
+    },
+    lessonSteps: [
+      { id: genId(), title: 'Warm-up', duration: 5, description: 'Talk about times you felt sick.' },
+      { id: genId(), title: 'Vocabulary', duration: 10, description: 'Learn pharmacy and health words.' },
+      { id: genId(), title: 'Grammar Focus', duration: 10, description: 'Practice should/must for advice.' },
+      { id: genId(), title: 'Phrases', duration: 10, description: 'Roleplay pharmacy conversations.' },
+      { id: genId(), title: 'Exercises', duration: 15, description: 'Complete all exercises.' },
+      { id: genId(), title: 'Wrap-up', duration: 5, description: 'Review and homework.' },
+    ],
+    exercises: [
+      {
+        id: genId(),
+        type: 'multiple-choice',
+        title: 'Health Advice',
+        instruction: 'Choose the correct sentence.',
+        content: {
+          questions: [
+            { id: genId(), question: 'A doctor gives strong advice:', options: ['You should to rest.', 'You must rest.', 'You must resting.'], correctIndex: 1 },
+            { id: genId(), question: 'You recommend something:', options: ['You should drink water.', 'You must drink water.', 'You should drinking water.'], correctIndex: 0 },
+            { id: genId(), question: 'Something is prohibited:', options: ['You shouldn\'t take this.', 'You don\'t should take this.', 'You mustn\'t to take this.'], correctIndex: 0 },
+          ]
+        },
+        answerKey: '1.b 2.a 3.a'
+      },
+      {
+        id: genId(),
+        type: 'fill-blank',
+        title: 'Fill in the Blanks',
+        instruction: 'Complete with should or must.',
+        content: {
+          sentences: [
+            { id: genId(), text: 'You ___ finish the antibiotics.', answer: 'must' },
+            { id: genId(), text: 'She ___ see a doctor if she feels worse.', answer: 'should' },
+            { id: genId(), text: 'You ___ not drive after taking this medicine.', answer: 'should' },
+          ]
+        },
+        answerKey: '1. must 2. should 3. should'
+      },
+      {
+        id: genId(),
+        type: 'dialogue-builder',
+        title: 'Pharmacy Dialogue',
+        instruction: 'Put the conversation in order.',
+        content: {
+          lines: [
+            { id: genId(), speaker: 'patient', text: 'I have a terrible headache.' },
+            { id: genId(), speaker: 'pharmacist', text: 'How long have you had it?' },
+            { id: genId(), speaker: 'patient', text: 'Since yesterday morning.' },
+            { id: genId(), speaker: 'pharmacist', text: 'You should take these painkillers every six hours.' },
+            { id: genId(), speaker: 'patient', text: 'Are there any side effects?' },
+          ]
+        },
+        answerKey: 'Patient describes symptoms, pharmacist asks duration, patient answers, pharmacist recommends, patient asks about side effects.'
+      },
+    ],
+    homework: {
+      title: 'Health Vocabulary Practice',
+      tasks: [
+        'Write 5 sentences using should/must about health',
+        'Translate 3 pharmacy phrases to English',
+        'Practice reading medicine labels in English',
+      ]
+    },
+    roleplay: {
+      title: 'At the Pharmacy',
+      situation: 'You are at a pharmacy asking for medicine for a cold.',
+      studentRole: 'A tourist with a cold',
+      teacherRole: 'The pharmacist',
+      script: [
+        { speaker: 'student', text: 'Hello, I need something for a cold.' },
+        { speaker: 'teacher', text: 'Of course. What are your symptoms?' },
+        { speaker: 'student', text: 'I have a runny nose and a sore throat.' },
+        { speaker: 'teacher', text: 'I recommend these cold tablets. Take one every eight hours.' },
+        { speaker: 'student', text: 'Can I take them on an empty stomach?' },
+        { speaker: 'teacher', text: 'No, you should take them with food. And drink plenty of water.' },
+      ]
+    },
+    answerKey: 'Should/must exercises and pharmacy dialogue answers as listed.',
+    teacherNotes: 'Monitor should vs must usage carefully. Encourage full sentences.'
+  },
+  {
+    id: 'session-18',
+    number: 18,
+    date: '2026-04-17',
+    title: 'Money & Banking Basics',
+    goal: 'Handle money situations: exchange currency, use an ATM, and ask about fees.',
+    vocab: [
+      { id: genId(), word: 'Exchange rate', meaning: 'سعر الصرف', example: 'What is the exchange rate for dollars?', category: 'money' },
+      { id: genId(), word: 'ATM', meaning: 'ماكينة صراف آلي', example: 'Is there an ATM near here?', category: 'money' },
+      { id: genId(), word: 'Fee', meaning: 'رسوم / عمولة', example: 'There is a small fee for this service.', category: 'money' },
+      { id: genId(), word: 'Receipt', meaning: 'إيصال / وصل', example: 'Can I have a receipt, please?', category: 'money' },
+      { id: genId(), word: 'Pin code', meaning: 'رمز PIN', example: 'Please enter your pin code.', category: 'money' },
+      { id: genId(), word: 'Withdraw', meaning: 'سحب (مال)', example: 'I want to withdraw 200 dollars.', category: 'money' },
+    ],
+    phrases: [
+      { id: genId(), phrase: 'Where can I exchange currency?', translation: 'أين يمكنني صرف العملات؟', situation: 'At bank' },
+      { id: genId(), phrase: 'What is the exchange rate for euros?', translation: 'ما سعر صرف اليورو؟', situation: 'Currency exchange' },
+      { id: genId(), phrase: 'Is there an ATM nearby?', translation: 'هل يوجد صراف آلي قريب؟', situation: 'Finding ATM' },
+      { id: genId(), phrase: 'I\'d like to withdraw some money.', translation: 'أريد سحب بعض المال.', situation: 'At bank' },
+      { id: genId(), phrase: 'Are there any fees?', translation: 'هل توجد أي رسوم؟', situation: 'Asking about charges' },
+      { id: genId(), phrase: 'Can I pay by card?', translation: 'هل يمكنني الدفع بالبطاقة؟', situation: 'Payment' },
+    ],
+    grammar: {
+      title: 'Would like / Want to for Transactions',
+      explanation: '"Would like" is more polite than "want" for making requests in banks and shops.',
+      examples: [
+        'I would like to exchange some money.',
+        'I want to open a bank account.',
+        'Would you like a receipt?',
+        'She\'d like to withdraw 500 euros.',
+      ]
+    },
+    lessonSteps: [
+      { id: genId(), title: 'Warm-up', duration: 5, description: 'Discuss how you handle money while traveling.' },
+      { id: genId(), title: 'Vocabulary', duration: 10, description: 'Learn money and banking words.' },
+      { id: genId(), title: 'Grammar Focus', duration: 10, description: 'Practice would like vs want to.' },
+      { id: genId(), title: 'Phrases', duration: 10, description: 'Practice banking phrases.' },
+      { id: genId(), title: 'Exercises', duration: 15, description: 'Complete all exercises.' },
+      { id: genId(), title: 'Wrap-up', duration: 5, description: 'Review and homework.' },
+    ],
+    exercises: [
+      {
+        id: genId(),
+        type: 'multiple-choice',
+        title: 'Polite Requests at the Bank',
+        instruction: 'Choose the most polite sentence.',
+        content: {
+          questions: [
+            { id: genId(), question: 'Asking to exchange money:', options: ['I want exchange money.', 'I would like to exchange money.', 'Exchange money for me.'], correctIndex: 1 },
+            { id: genId(), question: 'Asking about fees:', options: ['Tell me the fees.', 'Could you tell me about any fees?', 'What fees, huh?'], correctIndex: 1 },
+            { id: genId(), question: 'At the ATM:', options: ['Give me cash now.', 'I\'d like to withdraw cash, please.', 'Withdraw 200.'], correctIndex: 1 },
+          ]
+        },
+        answerKey: '1.b 2.b 3.b'
+      },
+      {
+        id: genId(),
+        type: 'fill-blank',
+        title: 'Fill in the Blanks',
+        instruction: 'Complete with would like or want.',
+        content: {
+          sentences: [
+            { id: genId(), text: 'I ___ to open a savings account.', answer: 'would like' },
+            { id: genId(), text: 'She ___ to check her balance.', answer: 'wants' },
+            { id: genId(), text: '___ you like a receipt?', answer: 'Would' },
+          ]
+        },
+        answerKey: '1. would like 2. wants 3. Would'
+      },
+    ],
+    homework: {
+      title: 'Money & Banking Practice',
+      tasks: [
+        'Write 3 polite sentences using "I would like to..."',
+        'Translate banking phrases to Arabic and back',
+        'Practice reading an ATM screen in English',
+      ]
+    },
+    roleplay: {
+      title: 'At the Currency Exchange',
+      situation: 'You are exchanging currency at a bank.',
+      studentRole: 'A tourist exchanging money',
+      teacherRole: 'The bank teller',
+      script: [
+        { speaker: 'student', text: 'Hello, I would like to exchange some dollars.' },
+        { speaker: 'teacher', text: 'Certainly. How much would you like to exchange?' },
+        { speaker: 'student', text: 'Two hundred dollars. What is the exchange rate?' },
+        { speaker: 'teacher', text: 'Today\'s rate is 1 dollar to 0.92 euros. There is a 2 euro fee.' },
+        { speaker: 'student', text: 'That\'s fine. Can I have a receipt, please?' },
+        { speaker: 'teacher', text: 'Of course. Here you go. Have a nice day!' },
+      ]
+    },
+    answerKey: 'Would like/want exercises and banking dialogue answers as listed.',
+    teacherNotes: 'Emphasize politeness in financial requests. Practice saying numbers clearly.'
+  },
+  {
+    id: 'session-19',
+    number: 19,
+    date: '2026-04-20',
+    title: 'Sightseeing & Museums',
+    goal: 'Ask about attractions, buy museum tickets, and describe what you see.',
+    vocab: [
+      { id: genId(), word: 'Admission', meaning: 'رسوم الدخول', example: 'Admission is free on Sundays.', category: 'sightseeing' },
+      { id: genId(), word: 'Exhibit', meaning: 'معرض / قطعة معروضة', example: 'The new exhibit is on the second floor.', category: 'sightseeing' },
+      { id: genId(), word: 'Guided tour', meaning: 'جولة مرشدة', example: 'The guided tour starts at 10 AM.', category: 'sightseeing' },
+      { id: genId(), word: 'Landmark', meaning: 'معلم بارز', example: 'The Eiffel Tower is a famous landmark.', category: 'sightseeing' },
+      { id: genId(), word: 'Audio guide', meaning: 'مرشد صوتي', example: 'You can rent an audio guide at the entrance.', category: 'sightseeing' },
+      { id: genId(), word: 'Crowded', meaning: 'مزدحم', example: 'The museum is very crowded today.', category: 'sightseeing' },
+    ],
+    phrases: [
+      { id: genId(), phrase: 'How much is admission?', translation: 'كم رسوم الدخول؟', situation: 'Buying tickets' },
+      { id: genId(), phrase: 'Is there a guided tour in English?', translation: 'هل توجد جولة مرشدة بالإنجليزية؟', situation: 'At museum' },
+      { id: genId(), phrase: 'What are the must-see attractions here?', translation: 'ما أهم المعالم السياحية هنا؟', situation: 'Asking about sights' },
+      { id: genId(), phrase: 'Can I take photos inside?', translation: 'هل يمكنني التصوير بالداخل؟', situation: 'In museum' },
+      { id: genId(), phrase: 'How long does the tour take?', translation: 'كم يستغرق وقت الجولة؟', situation: 'Planning visit' },
+      { id: genId(), phrase: 'Is this the right way to the museum?', translation: 'هل هذا هو الطريق الصحيح للمتحف؟', situation: 'Getting directions' },
+    ],
+    grammar: {
+      title: 'Comparatives for Comparing Places',
+      explanation: 'Use comparatives (adj + er / more + adj) to compare: "This museum is bigger than that one." Add "than" before the second thing.',
+      examples: [
+        'This cathedral is older than the church.',
+        'The park is more beautiful than I expected.',
+        'Is the morning tour shorter than the afternoon one?',
+        'This museum is less crowded than the other.',
+      ]
+    },
+    lessonSteps: [
+      { id: genId(), title: 'Warm-up', duration: 5, description: 'Talk about your favorite places to visit.' },
+      { id: genId(), title: 'Vocabulary', duration: 10, description: 'Learn sightseeing and museum words.' },
+      { id: genId(), title: 'Grammar Focus', duration: 10, description: 'Practice comparatives for places.' },
+      { id: genId(), title: 'Phrases', duration: 10, description: 'Practice museum and sightseeing phrases.' },
+      { id: genId(), title: 'Exercises', duration: 15, description: 'Complete all exercises.' },
+      { id: genId(), title: 'Wrap-up', duration: 5, description: 'Review and homework.' },
+    ],
+    exercises: [
+      {
+        id: genId(),
+        type: 'multiple-choice',
+        title: 'Choose the Correct Comparative',
+        instruction: 'Select the correct form.',
+        content: {
+          questions: [
+            { id: genId(), question: 'This cathedral is ___ than the church.', options: ['more old', 'older', 'oldest'], correctIndex: 1 },
+            { id: genId(), question: 'The park is ___ beautiful than I thought.', options: ['more', 'most', 'much'], correctIndex: 0 },
+            { id: genId(), question: 'Is this tour ___ than the morning one?', options: ['longer', 'more long', 'longest'], correctIndex: 0 },
+          ]
+        },
+        answerKey: '1.b 2.a 3.a'
+      },
+      {
+        id: genId(),
+        type: 'fill-blank',
+        title: 'Fill in the Blanks',
+        instruction: 'Complete with the correct comparative.',
+        content: {
+          sentences: [
+            { id: genId(), text: 'This museum is ___ (big) than the other.', answer: 'bigger' },
+            { id: genId(), text: 'The afternoon is ___ (hot) than the morning.', answer: 'hotter' },
+            { id: genId(), text: 'This exhibit is ___ (interesting) than I expected.', answer: 'more interesting' },
+          ]
+        },
+        answerKey: '1. bigger 2. hotter 3. more interesting'
+      },
+    ],
+    homework: {
+      title: 'Sightseeing Practice',
+      tasks: [
+        'Write 4 comparative sentences about places you know',
+        'Translate 3 museum phrases to English',
+        'Describe a museum you visited using comparatives',
+      ]
+    },
+    roleplay: {
+      title: 'Buying Museum Tickets',
+      situation: 'You are buying tickets at a museum entrance.',
+      studentRole: 'A tourist at a museum',
+      teacherRole: 'The ticket seller',
+      script: [
+        { speaker: 'student', text: 'Hello, how much is admission?' },
+        { speaker: 'teacher', text: 'It\'s 15 euros for adults. Would you like a guided tour as well?' },
+        { speaker: 'student', text: 'Yes, please. Is there one in English?' },
+        { speaker: 'teacher', text: 'Yes, the English tour starts at 11. It takes about 90 minutes.' },
+        { speaker: 'student', text: 'Perfect. Can I take photos inside?' },
+        { speaker: 'teacher', text: 'Yes, but no flash photography in the special exhibit.' },
+      ]
+    },
+    answerKey: 'Comparatives exercises and museum dialogue answers as listed.',
+    teacherNotes: 'Focus on correct comparative forms. Extra practice with irregular comparatives.'
+  },
+  {
+    id: 'session-20',
+    number: 20,
+    date: '2026-04-21',
+    title: 'Comparing & Choosing Options',
+    goal: 'Compare things, express preferences, and make decisions while shopping or traveling.',
+    vocab: [
+      { id: genId(), word: 'Prefer', meaning: 'يفضل', example: 'I prefer the blue one.', category: 'comparison' },
+      { id: genId(), word: 'Option', meaning: 'خيار', example: 'What are my options?', category: 'comparison' },
+      { id: genId(), word: 'Difference', meaning: 'فرق / اختلاف', example: 'What is the difference between these two?', category: 'comparison' },
+      { id: genId(), word: 'Affordable', meaning: 'بسعر معقول', example: 'This hotel is more affordable.', category: 'comparison' },
+      { id: genId(), word: 'Recommend', meaning: 'يوصي / ينصح', example: 'Which one do you recommend?', category: 'comparison' },
+      { id: genId(), word: 'Convenient', meaning: 'مريح / مناسب', example: 'The morning flight is more convenient.', category: 'comparison' },
+    ],
+    phrases: [
+      { id: genId(), phrase: 'Which one do you recommend?', translation: 'أي واحد توصي به؟', situation: 'Choosing' },
+      { id: genId(), phrase: 'I prefer the smaller one.', translation: 'أفضل الصغير.', situation: 'Expressing preference' },
+      { id: genId(), phrase: 'What is the difference between these two?', translation: 'ما الفرق بين هذين الاثنين؟', situation: 'Comparing' },
+      { id: genId(), phrase: 'Is there a cheaper option?', translation: 'هل يوجد خيار أرخص؟', situation: 'Budget comparison' },
+      { id: genId(), phrase: 'This one looks better than that one.', translation: 'هذا يبدو أفضل من ذاك.', situation: 'Visual comparison' },
+      { id: genId(), phrase: 'I\'ll go with the first option.', translation: 'سأختار الخيار الأول.', situation: 'Making a choice' },
+    ],
+    grammar: {
+      title: 'Comparatives vs Superlatives',
+      explanation: 'Use comparatives to compare two things (cheaper, more convenient). Use superlatives for three or more (the cheapest, the most convenient).',
+      examples: [
+        'This hotel is cheaper than that one.',
+        'The morning flight is the most convenient.',
+        'Which is better, the bus or the train?',
+        'This is the best restaurant in town.',
+      ]
+    },
+    lessonSteps: [
+      { id: genId(), title: 'Warm-up', duration: 5, description: 'Compare two restaurants you know.' },
+      { id: genId(), title: 'Vocabulary', duration: 10, description: 'Learn comparison and preference words.' },
+      { id: genId(), title: 'Grammar Focus', duration: 10, description: 'Practice comparatives and superlatives.' },
+      { id: genId(), title: 'Phrases', duration: 10, description: 'Practice choosing and comparing phrases.' },
+      { id: genId(), title: 'Exercises', duration: 15, description: 'Complete all exercises.' },
+      { id: genId(), title: 'Wrap-up', duration: 5, description: 'Review and homework.' },
+    ],
+    exercises: [
+      {
+        id: genId(),
+        type: 'multiple-choice',
+        title: 'Comparative or Superlative?',
+        instruction: 'Choose the correct form.',
+        content: {
+          questions: [
+            { id: genId(), question: 'This hotel is ___ than the other.', options: ['the cheapest', 'cheaper', 'more cheap'], correctIndex: 1 },
+            { id: genId(), question: 'This is ___ restaurant in the city.', options: ['the best', 'better', 'good'], correctIndex: 0 },
+            { id: genId(), question: 'The bus is ___ than the train.', options: ['the slowest', 'more slower', 'slower'], correctIndex: 2 },
+          ]
+        },
+        answerKey: '1.b 2.a 3.c'
+      },
+      {
+        id: genId(),
+        type: 'matching',
+        title: 'Match the Comparison',
+        instruction: 'Match each adjective to its comparative form.',
+        content: {
+          pairs: [
+            { id: genId(), left: 'cheap', right: 'cheaper' },
+            { id: genId(), left: 'convenient', right: 'more convenient' },
+            { id: genId(), left: 'good', right: 'better' },
+            { id: genId(), left: 'far', right: 'farther' },
+          ]
+        },
+        answerKey: 'cheap-cheaper, convenient-more convenient, good-better, far-farther'
+      },
+    ],
+    homework: {
+      title: 'Comparing & Choosing Practice',
+      tasks: [
+        'Write 5 comparative sentences about hotels or restaurants',
+        'Write 3 superlative sentences about your city',
+        'Practice "I prefer..." sentences for travel choices',
+      ]
+    },
+    roleplay: {
+      title: 'Choosing a Hotel',
+      situation: 'You are at a travel agency choosing between two hotels.',
+      studentRole: 'A traveler comparing options',
+      teacherRole: 'The travel agent',
+      script: [
+        { speaker: 'student', text: 'Can you help me choose a hotel?' },
+        { speaker: 'teacher', text: 'Of course! We have the Grand Hotel and the City Inn.' },
+        { speaker: 'student', text: 'What is the difference between them?' },
+        { speaker: 'teacher', text: 'The Grand Hotel is more expensive but closer to the beach. The City Inn is cheaper.' },
+        { speaker: 'student', text: 'I prefer something convenient. I will go with the Grand Hotel.' },
+        { speaker: 'teacher', text: 'Great choice. It is the best hotel in the area!' },
+      ]
+    },
+    answerKey: 'Comparatives/superlatives exercises and hotel dialogue answers as listed.',
+    teacherNotes: 'Focus on irregular forms (good-better-best, far-farther-farthest). Practice speaking full comparative sentences.'
+  },
+  {
+    id: 'session-21',
+    number: 21,
+    date: '2026-04-23',
+    title: 'Future Plans: Will vs Going to',
+    goal: 'Talk about future travel plans and make predictions using will and going to.',
+    vocab: [
+      { id: genId(), word: 'Plan', meaning: 'خطة', example: 'I have a plan for my trip.', category: 'future' },
+      { id: genId(), word: 'Reservation', meaning: 'حجز', example: 'I made a reservation for two nights.', category: 'future' },
+      { id: genId(), word: 'Forecast', meaning: 'توقعات (طقس)', example: 'The weather forecast says it will rain.', category: 'future' },
+      { id: genId(), word: 'Departure', meaning: 'مغادرة', example: 'The departure time is 8 AM.', category: 'future' },
+      { id: genId(), word: 'Arrival', meaning: 'وصول', example: 'Our arrival is scheduled for noon.', category: 'future' },
+      { id: genId(), word: 'Itinerary', meaning: 'جدول الرحلة', example: 'Here is my travel itinerary.', category: 'future' },
+    ],
+    phrases: [
+      { id: genId(), phrase: 'I am going to visit Paris next month.', translation: 'سأزور باريس الشهر القادم.', situation: 'Future plan' },
+      { id: genId(), phrase: 'The train will arrive at 3 PM.', translation: 'سيصل القطار الساعة 3 مساءً.', situation: 'Prediction' },
+      { id: genId(), phrase: 'We are going to stay at a hotel near the beach.', translation: 'سنقيم في فندق قريب من الشاطئ.', situation: 'Travel plan' },
+      { id: genId(), phrase: 'I think it will be sunny tomorrow.', translation: 'أعتقد أن الطقس سيكون مشمساً غداً.', situation: 'Weather prediction' },
+      { id: genId(), phrase: 'When are you going to leave?', translation: 'متى ستغادر؟', situation: 'Asking about plans' },
+      { id: genId(), phrase: 'I will send you the details later.', translation: 'سأرسل لك التفاصيل لاحقاً.', situation: 'Promise' },
+    ],
+    grammar: {
+      title: 'Will vs Going to',
+      explanation: 'Use "going to" for plans you already decided. Use "will" for quick decisions, promises, and predictions.',
+      examples: [
+        'I am going to travel to London. (already decided)',
+        'I will help you with your bags. (quick decision)',
+        'It will rain tomorrow. (prediction)',
+        'She is going to study English next year. (plan)',
+      ]
+    },
+    lessonSteps: [
+      { id: genId(), title: 'Warm-up', duration: 5, description: 'Talk about your next travel plans.' },
+      { id: genId(), title: 'Vocabulary', duration: 10, description: 'Learn future plan and travel words.' },
+      { id: genId(), title: 'Grammar Focus', duration: 15, description: 'Practice will vs going to.' },
+      { id: genId(), title: 'Phrases', duration: 10, description: 'Practice future travel phrases.' },
+      { id: genId(), title: 'Exercises', duration: 10, description: 'Complete all exercises.' },
+      { id: genId(), title: 'Wrap-up', duration: 5, description: 'Review and homework.' },
+    ],
+    exercises: [
+      {
+        id: genId(),
+        type: 'multiple-choice',
+        title: 'Will or Going to?',
+        instruction: 'Choose the correct future form.',
+        content: {
+          questions: [
+            { id: genId(), question: 'You already decided to travel:', options: ['I will travel.', 'I am going to travel.', 'I travel.'], correctIndex: 1 },
+            { id: genId(), question: 'You make a quick offer:', options: ['I am going to help you.', 'I will help you.', 'I help you.'], correctIndex: 1 },
+            { id: genId(), question: 'A weather prediction:', options: ['It is going to rain.', 'It will rain.', 'Both are acceptable.'], correctIndex: 2 },
+          ]
+        },
+        answerKey: '1.b 2.b 3.c'
+      },
+      {
+        id: genId(),
+        type: 'fill-blank',
+        title: 'Fill in the Blanks',
+        instruction: 'Complete with will or going to.',
+        content: {
+          sentences: [
+            { id: genId(), text: 'I ___ visit my friend next week. (plan)', answer: 'am going to' },
+            { id: genId(), text: 'Wait, I ___ carry that for you. (quick offer)', answer: 'will' },
+            { id: genId(), text: 'The flight ___ depart at 6 PM. (schedule)', answer: 'is going to' },
+          ]
+        },
+        answerKey: '1. am going to 2. will 3. is going to'
+      },
+    ],
+    homework: {
+      title: 'Future Plans Practice',
+      tasks: [
+        'Write 3 sentences with "going to" about your travel plans',
+        'Write 3 sentences with "will" for predictions or offers',
+        'Describe your dream trip using both future forms',
+      ]
+    },
+    roleplay: {
+      title: 'Planning a Weekend Trip',
+      situation: 'You are planning a weekend trip with a friend.',
+      studentRole: 'A traveler making plans',
+      teacherRole: 'Your travel partner',
+      script: [
+        { speaker: 'student', text: 'I am going to plan a weekend trip. Where should we go?' },
+        { speaker: 'teacher', text: 'How about the coast? It will be sunny this weekend.' },
+        { speaker: 'student', text: 'Great! I will book the hotel tonight.' },
+        { speaker: 'teacher', text: 'And I am going to check the train schedule.' },
+        { speaker: 'student', text: 'We are going to have so much fun!' },
+        { speaker: 'teacher', text: 'I am sure we will! Let us meet tomorrow to finalize.' },
+      ]
+    },
+    answerKey: 'Will/going to exercises and trip planning dialogue answers as listed.',
+    teacherNotes: 'This is a key grammar point. Spend extra time on the distinction. Use real travel scenarios.'
+  },
+  {
+    id: 'session-22',
+    number: 22,
+    date: '2026-04-24',
+    title: 'Formal vs Casual English',
+    goal: 'Know when to use formal vs casual language in hotels, restaurants, and meetings.',
+    vocab: [
+      { id: genId(), word: 'Formal', meaning: 'رسمي', example: 'Use formal language in business meetings.', category: 'register' },
+      { id: genId(), word: 'Casual', meaning: 'عفوي / غير رسمي', example: 'Casual language is fine with friends.', category: 'register' },
+      { id: genId(), word: 'Respectfully', meaning: 'باحترام', example: 'Please accept my apologies respectfully.', category: 'register' },
+      { id: genId(), word: 'Greeting', meaning: 'تحية / سلام', example: 'A formal greeting is "Good evening."', category: 'register' },
+      { id: genId(), word: 'Apologize', meaning: 'يعتذر', example: 'I apologize for the inconvenience.', category: 'register' },
+      { id: genId(), word: 'Appropriate', meaning: 'مناسب / ملائم', example: 'Is this outfit appropriate for dinner?', category: 'register' },
+    ],
+    phrases: [
+      { id: genId(), phrase: 'Good evening. I have a reservation.', translation: 'مساء الخير. عندي حجز.', situation: 'Formal hotel' },
+      { id: genId(), phrase: 'Hey! I am here to check in.', translation: 'مرحبا! أنا هنا للتسجيل.', situation: 'Casual hotel' },
+      { id: genId(), phrase: 'I would appreciate your help.', translation: 'أقدر مساعدتك.', situation: 'Formal request' },
+      { id: genId(), phrase: 'Can you give me a hand?', translation: 'هل يمكنك مساعدتي؟', situation: 'Casual request' },
+      { id: genId(), phrase: 'I apologize for any inconvenience.', translation: 'أعتذر عن أي إزعاج.', situation: 'Formal apology' },
+      { id: genId(), phrase: 'Sorry about that!', translation: 'آسف على ذلك!', situation: 'Casual apology' },
+    ],
+    grammar: {
+      title: 'Formal vs Casual Structures',
+      explanation: 'Formal: "I would like..." "Could you..." "May I..." Casual: "I want..." "Can you..." "Is it OK if..."',
+      examples: [
+        'Formal: I would like to check in, please.',
+        'Casual: I want to check in.',
+        'Formal: Could you please assist me?',
+        'Casual: Can you help me?',
+      ]
+    },
+    lessonSteps: [
+      { id: genId(), title: 'Warm-up', duration: 5, description: 'Discuss when to use formal vs casual English.' },
+      { id: genId(), title: 'Vocabulary', duration: 10, description: 'Learn formal and casual word pairs.' },
+      { id: genId(), title: 'Grammar Focus', duration: 10, description: 'Practice formal vs casual sentence structures.' },
+      { id: genId(), title: 'Phrases', duration: 10, description: 'Compare formal and casual phrases side by side.' },
+      { id: genId(), title: 'Exercises', duration: 15, description: 'Complete all exercises.' },
+      { id: genId(), title: 'Wrap-up', duration: 5, description: 'Review and homework.' },
+    ],
+    exercises: [
+      {
+        id: genId(),
+        type: 'multiple-choice',
+        title: 'Formal or Casual?',
+        instruction: 'Choose the appropriate register for each situation.',
+        content: {
+          questions: [
+            { id: genId(), question: 'Talking to a hotel receptionist:', options: ['Hey, I need a room.', 'Good evening. I would like to check in, please.', 'Gimme a room.'], correctIndex: 1 },
+            { id: genId(), question: 'Chatting with a travel friend:', options: ['I would appreciate your assistance.', 'May I request your help?', 'Can you give me a hand?'], correctIndex: 2 },
+            { id: genId(), question: 'Writing to hotel management:', options: ['Dear Sir, I would like to report...', 'Hey, something is wrong...', 'Yo, fix this.'], correctIndex: 0 },
+          ]
+        },
+        answerKey: '1.b 2.c 3.a'
+      },
+      {
+        id: genId(),
+        type: 'matching',
+        title: 'Match Formal to Casual',
+        instruction: 'Match each formal phrase to its casual equivalent.',
+        content: {
+          pairs: [
+            { id: genId(), left: 'I would like to...', right: 'I want to...' },
+            { id: genId(), left: 'Could you please...', right: 'Can you...' },
+            { id: genId(), left: 'I apologize for...', right: 'Sorry about...' },
+            { id: genId(), left: 'May I ask...', right: 'Can I ask...' },
+          ]
+        },
+        answerKey: 'would like-want, could you-can you, apologize-sorry, may I-can I'
+      },
+    ],
+    homework: {
+      title: 'Formal vs Casual Practice',
+      tasks: [
+        'Rewrite 3 casual sentences as formal',
+        'Rewrite 3 formal sentences as casual',
+        'Write a formal email requesting a hotel room',
+      ]
+    },
+    roleplay: {
+      title: 'Hotel Check-in: Two Versions',
+      situation: 'Check into a hotel — first casually, then formally.',
+      studentRole: 'A hotel guest',
+      teacherRole: 'The receptionist',
+      script: [
+        { speaker: 'student', text: 'Good evening. I have a reservation under Al-Rashid.' },
+        { speaker: 'teacher', text: 'Welcome, Mr. Al-Rashid. I have your reservation right here.' },
+        { speaker: 'student', text: 'Would it be possible to have a room on a higher floor?' },
+        { speaker: 'teacher', text: 'Certainly. I will arrange that for you. Could you please sign here?' },
+        { speaker: 'student', text: 'Of course. I would also appreciate a wake-up call at 7 AM.' },
+        { speaker: 'teacher', text: 'Absolutely. Enjoy your stay!' },
+      ]
+    },
+    answerKey: 'Formal/casual exercises and hotel dialogue answers as listed.',
+    teacherNotes: 'This lesson is essential for real-world English. Encourage students to notice register in real situations.'
+  },
+  {
+    id: 'session-23',
+    number: 23,
+    date: '2026-04-27',
+    title: 'Making Complaints Politely',
+    goal: 'Express dissatisfaction about services, rooms, or food without being rude.',
+    vocab: [
+      { id: genId(), word: 'Complaint', meaning: 'شكوى', example: 'I would like to make a complaint.', category: 'complaints' },
+      { id: genId(), word: 'Inconvenience', meaning: 'إزعاج / إ trìe', example: 'Sorry for the inconvenience.', category: 'complaints' },
+      { id: genId(), word: 'Unacceptable', meaning: 'غير مقبول', example: 'The room condition is unacceptable.', category: 'complaints' },
+      { id: genId(), word: 'Resolve', meaning: 'يحل / ينتهي', example: 'We will resolve this issue quickly.', category: 'complaints' },
+      { id: genId(), word: 'Refund', meaning: 'استرداد المال', example: 'I would like a refund.', category: 'complaints' },
+      { id: genId(), word: 'Disappointed', meaning: 'محبط / مخيب', example: 'I am disappointed with the service.', category: 'complaints' },
+    ],
+    phrases: [
+      { id: genId(), phrase: 'I am afraid there is a problem with my room.', translation: 'أخشى أن هناك مشكلة في غرفتي.', situation: 'Complaint at hotel' },
+      { id: genId(), phrase: 'Could you please look into this?', translation: 'هل يمكنك النظر في هذا الأمر؟', situation: 'Polite request' },
+      { id: genId(), phrase: 'I would appreciate it if you could fix this.', translation: 'أقدر لك لو أصلحت هذا.', situation: 'Asking for resolution' },
+      { id: genId(), phrase: 'This is not what I expected.', translation: 'هذا ليس ما توقعته.', situation: 'Expressing disappointment' },
+      { id: genId(), phrase: 'I would like to speak to the manager, please.', translation: 'أريد التحدث مع المدير من فضلك.', situation: 'Escalating' },
+      { id: genId(), phrase: 'Is it possible to get a refund?', translation: 'هل من الممكن استرداد المال؟', situation: 'Requesting refund' },
+    ],
+    grammar: {
+      title: 'Polite Complaint Structures',
+      explanation: 'Use "I am afraid..." "Unfortunately..." "I would appreciate if..." to soften complaints. Avoid direct criticism.',
+      examples: [
+        'I am afraid the air conditioning is not working.',
+        'Unfortunately, the food was cold when it arrived.',
+        'I would appreciate it if you could change my room.',
+        'I am sorry, but this is not what I ordered.',
+      ]
+    },
+    lessonSteps: [
+      { id: genId(), title: 'Warm-up', duration: 5, description: 'Talk about a time something went wrong at a hotel or restaurant.' },
+      { id: genId(), title: 'Vocabulary', duration: 10, description: 'Learn complaint and resolution words.' },
+      { id: genId(), title: 'Grammar Focus', duration: 10, description: 'Practice softening complaints politely.' },
+      { id: genId(), title: 'Phrases', duration: 10, description: 'Practice polite complaint phrases.' },
+      { id: genId(), title: 'Exercises', duration: 15, description: 'Complete all exercises.' },
+      { id: genId(), title: 'Wrap-up', duration: 5, description: 'Review and homework.' },
+    ],
+    exercises: [
+      {
+        id: genId(),
+        type: 'multiple-choice',
+        title: 'The Most Polite Complaint',
+        instruction: 'Choose the most polite way to complain.',
+        content: {
+          questions: [
+            { id: genId(), question: 'The room is too noisy:', options: ['This room is terrible!', 'I am afraid the room is quite noisy.', 'Fix this now!'], correctIndex: 1 },
+            { id: genId(), question: 'The food is cold:', options: ['I would appreciate it if you could heat this.', 'This food is awful!', 'Give me hot food.'], correctIndex: 0 },
+            { id: genId(), question: 'Wrong order:', options: ['You got my order wrong!', 'I am sorry, but this is not what I ordered.', 'This is wrong!'], correctIndex: 1 },
+          ]
+        },
+        answerKey: '1.b 2.a 3.b'
+      },
+      {
+        id: genId(),
+        type: 'fill-blank',
+        title: 'Make It Polite',
+        instruction: 'Rewrite the rude complaint as a polite one.',
+        content: {
+          sentences: [
+            { id: genId(), text: 'This room is dirty! → I am ___ there is a problem with the cleanliness.', answer: 'afraid' },
+            { id: genId(), text: 'Fix the AC! → I would ___ it if you could fix the air conditioning.', answer: 'appreciate' },
+            { id: genId(), text: 'Give me my money back! → Is it possible to get a ___?', answer: 'refund' },
+          ]
+        },
+        answerKey: '1. afraid 2. appreciate 3. refund'
+      },
+    ],
+    homework: {
+      title: 'Polite Complaints Practice',
+      tasks: [
+        'Write 3 polite complaints about hotel problems',
+        'Write 3 polite complaints about restaurant problems',
+        'Practice saying "I am afraid..." and "I would appreciate..."',
+      ]
+    },
+    roleplay: {
+      title: 'Complaining at a Hotel',
+      situation: 'You have several issues with your hotel room and need to complain politely.',
+      studentRole: 'An unhappy hotel guest',
+      teacherRole: 'The hotel receptionist',
+      script: [
+        { speaker: 'student', text: 'Excuse me, I am afraid there is a problem with my room.' },
+        { speaker: 'teacher', text: 'I am sorry to hear that. What seems to be the issue?' },
+        { speaker: 'student', text: 'The air conditioning is not working, and the bathroom has not been cleaned.' },
+        { speaker: 'teacher', text: 'I apologize for the inconvenience. I will send someone right away.' },
+        { speaker: 'student', text: 'I would appreciate it if this could be resolved quickly.' },
+        { speaker: 'teacher', text: 'Of course. We will also offer you a complimentary breakfast as an apology.' },
+      ]
+    },
+    answerKey: 'Polite complaint exercises and hotel dialogue answers as listed.',
+    teacherNotes: 'Role of politeness in English-speaking cultures is crucial. Emphasize tone and word choice.'
+  },
+  {
+    id: 'session-24',
+    number: 24,
+    date: '2026-04-28',
+    title: 'Month 2 Review & Simulation',
+    goal: 'Review all Month 2 content through a comprehensive simulation.',
+    vocab: [
+      { id: genId(), word: 'Review', meaning: 'مراجعة', example: 'Let us review what we learned.', category: 'review' },
+      { id: genId(), word: 'Confidence', meaning: 'ثقة', example: 'I feel more confidence now.', category: 'review' },
+      { id: genId(), word: 'Progress', meaning: 'تقدم', example: 'You have made great progress.', category: 'review' },
+      { id: genId(), word: 'Prepare', meaning: 'يحضر / يستعد', example: 'Let us prepare for the next month.', category: 'review' },
+      { id: genId(), word: 'Achieve', meaning: 'يحقق', example: 'You achieved all your goals.', category: 'review' },
+      { id: genId(), word: 'Improve', meaning: 'يحسّن', example: 'Your English has improved a lot.', category: 'review' },
+    ],
+    phrases: [
+      { id: genId(), phrase: 'I would like to check in, please.', translation: 'أود تسجيل الدخول من فضلك.', situation: 'Hotel' },
+      { id: genId(), phrase: 'I am afraid there is a problem.', translation: 'أخشى أن هناك مشكلة.', situation: 'Complaint' },
+      { id: genId(), phrase: 'Could you recommend a good restaurant?', translation: 'هل يمكنك أن توصي بمطعم جيد؟', situation: 'Asking for advice' },
+      { id: genId(), phrase: 'I prefer the earlier flight.', translation: 'أفضل الرحلة الأقدم.', situation: 'Choosing' },
+      { id: genId(), phrase: 'I am going to visit the museum tomorrow.', translation: 'سأزور المتحف غداً.', situation: 'Future plan' },
+      { id: genId(), phrase: 'I would appreciate your help.', translation: 'أقدر مساعدتك.', situation: 'Formal request' },
+    ],
+    grammar: {
+      title: 'Month 2 Grammar Review',
+      explanation: 'Review: Wh- questions, should/must, would like, comparatives/superlatives, will/going to, formal vs casual register.',
+      examples: [
+        'Where is the ticket machine? (Wh- question)',
+        'You should take this medicine. (Advice)',
+        'I would like to exchange money. (Polite request)',
+        'This hotel is cheaper than that one. (Comparative)',
+      ]
+    },
+    lessonSteps: [
+      { id: genId(), title: 'Warm-up', duration: 5, description: 'Share your favorite lesson from Month 2.' },
+      { id: genId(), title: 'Grammar Review', duration: 15, description: 'Quick review of all Month 2 grammar points.' },
+      { id: genId(), title: 'Vocabulary Review', duration: 10, description: 'Review key words from each week.' },
+      { id: genId(), title: 'Simulation', duration: 20, description: 'Full travel scenario from arrival to departure.' },
+      { id: genId(), title: 'Wrap-up', duration: 5, description: 'Celebrate progress and preview Month 3.' },
+    ],
+    exercises: [
+      {
+        id: genId(),
+        type: 'multiple-choice',
+        title: 'Month 2 Grammar Review',
+        instruction: 'Choose the correct answer.',
+        content: {
+          questions: [
+            { id: genId(), question: 'Polite request at a bank:', options: ['I want exchange money.', 'I would like to exchange money.', 'Exchange money now.'], correctIndex: 1 },
+            { id: genId(), question: 'Complaint at hotel:', options: ['This room is bad!', 'I am afraid there is a problem.', 'Fix my room!'], correctIndex: 1 },
+            { id: genId(), question: 'Future plan:', options: ['I will visit Paris. (already decided)', 'I am going to visit Paris. (already decided)', 'I visit Paris.'], correctIndex: 1 },
+          ]
+        },
+        answerKey: '1.b 2.b 3.b'
+      },
+      {
+        id: genId(),
+        type: 'fill-blank',
+        title: 'Fill in the Blanks',
+        instruction: 'Complete with the correct grammar form.',
+        content: {
+          sentences: [
+            { id: genId(), text: 'This museum is ___ (big) than the other.', answer: 'bigger' },
+            { id: genId(), text: 'You ___ (should/must) take medicine with food. (strong obligation)', answer: 'must' },
+            { id: genId(), text: 'I ___ (would like/want) to check in, please. (polite)', answer: 'would like' },
+          ]
+        },
+        answerKey: '1. bigger 2. must 3. would like'
+      },
+      {
+        id: genId(),
+        type: 'roleplay-card',
+        title: 'Full Travel Simulation',
+        instruction: 'You arrive in a new city. Check in at the hotel, ask for directions, order food, and make a polite complaint.',
+        content: {
+          scenario: 'Full day simulation',
+          tasks: ['Check in at hotel using formal English', 'Ask about local attractions using comparatives', 'Order food at a restaurant', 'Make a polite complaint about your room'],
+          roles: ['Traveler', 'Hotel staff / Waiter / Local'],
+        },
+        answerKey: 'Students should use appropriate register for each situation.'
+      },
+    ],
+    homework: {
+      title: 'Month 2 Final Review',
+      tasks: [
+        'Write a 10-sentence summary of what you learned in Month 2',
+        'Record yourself doing the full travel simulation',
+        'List 3 areas you want to improve in Month 3',
+      ]
+    },
+    roleplay: {
+      title: 'Full Travel Day Simulation',
+      situation: 'A complete day traveling: hotel check-in, sightseeing, dining, and handling a problem.',
+      studentRole: 'A traveler on a full day out',
+      teacherRole: 'Hotel clerk / waiter / local guide',
+      script: [
+        { speaker: 'student', text: 'Good evening. I would like to check in, please.' },
+        { speaker: 'teacher', text: 'Welcome! I have your reservation right here.' },
+        { speaker: 'student', text: 'I am afraid there is a problem with the air conditioning in my room.' },
+        { speaker: 'teacher', text: 'I apologize. I will send someone immediately.' },
+        { speaker: 'student', text: 'Thank you. Could you also recommend a good restaurant nearby?' },
+        { speaker: 'teacher', text: 'The Olive Garden is the best restaurant in the area. It is also the most affordable.' },
+      ]
+    },
+    answerKey: 'Review exercises and simulation answers as listed.',
+    teacherNotes: 'End of Month 2. Celebrate progress, identify areas for improvement, and prepare Month 3.'
+  },
+  // ============ MONTH 3: MAY 2026 ============
+  {
+    id: 'session-25',
+    number: 25,
     date: '2026-05-04',
     title: 'Weather & Seasons',
     goal: 'Describe weather conditions and seasonal activities. Use "It is..." and "There is..." naturally.',
@@ -1763,8 +2553,8 @@ export const sessions: Session[] = [
     teacherNotes: 'Connect weather to real travel situations. Ask students about weather in their home countries.'
   },
   {
-    id: 'session-18',
-    number: 18,
+    id: 'session-26',
+    number: 26,
     date: '2026-05-05',
     title: 'Doctor Visit & Health',
     goal: 'Describe symptoms clearly at a doctor\'s office and understand basic medical instructions.',
@@ -1889,8 +2679,8 @@ export const sessions: Session[] = [
     teacherNotes: 'Practice clear symptom description. Encourage students to use full sentences, not just single words.'
   },
   {
-    id: 'session-19',
-    number: 19,
+    id: 'session-27',
+    number: 27,
     date: '2026-05-07',
     title: 'Money, Banking & ATMs',
     goal: 'Handle money exchange, use an ATM, and ask about prices and payments.',
@@ -2003,8 +2793,8 @@ export const sessions: Session[] = [
     teacherNotes: 'Practice real money situations. Bring different currency examples if possible.'
   },
   {
-    id: 'session-20',
-    number: 20,
+    id: 'session-28',
+    number: 28,
     date: '2026-05-08',
     title: 'Sightseeing & Museums',
     goal: 'Ask about attractions, buy tickets, and discuss what you see.',
@@ -2113,8 +2903,8 @@ export const sessions: Session[] = [
     teacherNotes: 'Use photos of real landmarks if available. Encourage students to express opinions with superlatives.'
   },
   {
-    id: 'session-21',
-    number: 21,
+    id: 'session-29',
+    number: 29,
     date: '2026-05-11',
     title: 'Comparing & Choosing Options',
     goal: 'Compare travel options and express preferences using comparative and superlative forms.',
@@ -2221,8 +3011,8 @@ export const sessions: Session[] = [
     teacherNotes: 'Focus on real travel decisions. Students should give reasons for their preference.'
   },
   {
-    id: 'session-22',
-    number: 22,
+    id: 'session-30',
+    number: 30,
     date: '2026-05-12',
     title: 'Future Plans (Will / Going to)',
     goal: 'Talk about future travel plans using "will" for decisions and "going to" for intentions.',
@@ -2330,8 +3120,8 @@ export const sessions: Session[] = [
     teacherNotes: 'Help students distinguish will (quick decision) from going to (plan). Practice both forms clearly.'
   },
   {
-    id: 'session-23',
-    number: 23,
+    id: 'session-31',
+    number: 31,
     date: '2026-05-14',
     title: 'Formal vs Casual Language',
     goal: 'Switch between formal and casual English depending on the situation.',
@@ -2421,8 +3211,8 @@ export const sessions: Session[] = [
     teacherNotes: 'Practice switching between registers. It is ok to be semi-formal in many situations.'
   },
   {
-    id: 'session-24',
-    number: 24,
+    id: 'session-32',
+    number: 32,
     date: '2026-05-15',
     title: 'Making Effective Complaints',
     goal: 'Make polite but firm complaints in real travel situations.',
@@ -2514,8 +3304,8 @@ export const sessions: Session[] = [
     teacherNotes: 'Role-play staying calm while being firm. Practice tone of voice.'
   },
   {
-    id: 'session-25',
-    number: 25,
+    id: 'session-33',
+    number: 33,
     date: '2026-05-18',
     title: 'At the Beach & Water Activities',
     goal: 'Talk about beach activities, safety, and ask about facilities.',
@@ -2610,8 +3400,8 @@ export const sessions: Session[] = [
     teacherNotes: 'Emphasize safety vocabulary. Practice both giving and understanding safety instructions.'
   },
   {
-    id: 'session-26',
-    number: 26,
+    id: 'session-34',
+    number: 34,
     date: '2026-05-19',
     title: 'Travel Etiquette & Cultural Tips',
     goal: 'Understand cultural differences in greetings, tipping, and social behavior while traveling.',
@@ -2702,8 +3492,8 @@ export const sessions: Session[] = [
     teacherNotes: 'Discuss real cultural differences. Encourage curiosity and respect.'
   },
   {
-    id: 'session-27',
-    number: 27,
+    id: 'session-35',
+    number: 35,
     date: '2026-05-21',
     title: 'Extended Phone Conversations',
     goal: 'Handle multi-step phone calls: making, holding, and following up on calls.',
@@ -2798,8 +3588,8 @@ export const sessions: Session[] = [
     teacherNotes: 'Practice patience and politeness on hold. Emphasize confirmation at the end of calls.'
   },
   {
-    id: 'session-28',
-    number: 28,
+    id: 'session-36',
+    number: 36,
     date: '2026-05-22',
     title: 'Understanding Announcements',
     goal: 'Understand airport, train station, and public service announcements.',
@@ -2890,8 +3680,8 @@ export const sessions: Session[] = [
     teacherNotes: 'Read announcements slowly and clearly. Practice asking for clarification.'
   },
   {
-    id: 'session-29',
-    number: 29,
+    id: 'session-37',
+    number: 37,
     date: '2026-05-25',
     title: 'Negotiating & Bargaining at Markets',
     goal: 'Negotiate prices politely at markets and bazaars.',
@@ -2983,8 +3773,8 @@ export const sessions: Session[] = [
     teacherNotes: 'Polite bargaining is key. Practice friendly tone while negotiating.'
   },
   {
-    id: 'session-30',
-    number: 30,
+    id: 'session-38',
+    number: 38,
     date: '2026-05-26',
     title: 'Present Perfect for Travel Experiences',
     goal: 'Use "have you ever" and "I have been" to talk about travel experiences.',
@@ -3086,8 +3876,8 @@ export const sessions: Session[] = [
     teacherNotes: 'Practice present perfect in natural conversation. Focus on correct have/has forms.'
   },
   {
-    id: 'session-31',
-    number: 31,
+    id: 'session-39',
+    number: 39,
     date: '2026-05-28',
     title: 'Staying Connected (Internet, SIM & Post)',
     goal: 'Get a local SIM card, find WiFi, and use the post office while traveling.',
@@ -3182,8 +3972,8 @@ export const sessions: Session[] = [
     teacherNotes: 'Discuss local SIM options in the student\'s target country. Practical info is valuable.'
   },
   {
-    id: 'session-32',
-    number: 32,
+    id: 'session-40',
+    number: 40,
     date: '2026-05-29',
     title: 'Month 3 Review & Assessment',
     goal: 'Review all Month 3 topics and complete a comprehensive speaking assessment.',
