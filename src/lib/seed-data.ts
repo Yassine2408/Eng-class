@@ -2452,10 +2452,127 @@ export const sessions: Session[] = [
     answerKey: 'Review exercises and simulation answers as listed.',
     teacherNotes: 'End of Month 2. Celebrate progress, identify areas for improvement, and prepare Month 3.'
   },
-  // ============ MONTH 3: MAY 2026 ============
   {
     id: 'session-25',
     number: 25,
+    date: '2026-05-01',
+    title: 'Weather & Seasons Talk',
+    goal: 'Describe weather conditions, understand forecasts, and talk about seasonal travel plans.',
+    vocab: [
+      { id: genId(), word: 'Forecast', meaning: 'توقعات الطقس', example: 'The forecast says it will rain tomorrow.', category: 'weather' },
+      { id: genId(), word: 'Humid', meaning: 'رطب / حار رطب', example: 'It is very humid today.', category: 'weather' },
+      { id: genId(), word: 'Breeze', meaning: 'نسيم خفيف', example: 'A cool breeze is coming from the sea.', category: 'weather' },
+      { id: genId(), word: 'Season', meaning: 'فصل', example: 'Which season do you prefer for travel?', category: 'weather' },
+      { id: genId(), word: 'Degree', meaning: 'درجة (حرارة)', example: 'It is 30 degrees outside.', category: 'weather' },
+      { id: genId(), word: 'Drought', meaning: 'جفاف', example: 'A drought means no rain for a long time.', category: 'weather' },
+    ],
+    phrases: [
+      { id: genId(), phrase: 'What is the weather forecast for tomorrow?', translation: 'ما توقعات الطقس غداً؟', situation: 'Planning ahead' },
+      { id: genId(), phrase: 'It is sunny and warm today.', translation: 'الجو مشمس ودافئ اليوم.', situation: 'Describing weather' },
+      { id: genId(), phrase: 'Do I need an umbrella?', translation: 'هل أحتاج مظلة؟', situation: 'Asking about rain' },
+      { id: genId(), phrase: 'The temperature is around 25 degrees.', translation: 'الحرارة حوالي 25 درجة.', situation: 'Temperature' },
+      { id: genId(), phrase: 'It gets really humid in summer here.', translation: 'يصبح الجو رطباً جداً في الصيف هنا.', situation: 'Seasonal weather' },
+      { id: genId(), phrase: 'I prefer traveling in spring.', translation: 'أفضل السفر في الربيع.', situation: ' stating preference' },
+    ],
+    grammar: {
+      title: 'It is / There is for Weather',
+      explanation: 'Use "It is" for descriptions (It is hot/cold/sunny). Use "There is/are" for conditions (There is a breeze/There are clouds).',
+      examples: [
+        'It is raining outside.',
+        'There is a strong wind today.',
+        'It is getting colder in the evening.',
+        'There are dark clouds in the sky.',
+      ]
+    },
+    lessonSteps: [
+      { id: genId(), title: 'Warm-up', duration: 5, description: 'Talk about today\'s weather in your city.' },
+      { id: genId(), title: 'Vocabulary', duration: 10, description: 'Learn weather and seasons words.' },
+      { id: genId(), title: 'Grammar Focus', duration: 10, description: 'Practice "It is" and "There is" for weather.' },
+      { id: genId(), title: 'Phrases', duration: 10, description: 'Practice weather conversation phrases.' },
+      { id: genId(), title: 'Exercises', duration: 15, description: 'Complete all exercises.' },
+      { id: genId(), title: 'Wrap-up', duration: 5, description: 'Review and homework.' },
+    ],
+    exercises: [
+      {
+        id: genId(),
+        type: 'multiple-choice',
+        title: 'Weather Descriptions',
+        instruction: 'Choose the correct sentence.',
+        content: {
+          questions: [
+            { id: genId(), question: 'Describing rain:', options: ['It is raining.', 'There is raining.', 'It have rain.'], correctIndex: 0 },
+            { id: genId(), question: 'Describing wind:', options: ['It is a wind.', 'There is a strong wind.', 'It have wind.'], correctIndex: 1 },
+            { id: genId(), question: 'Describing clouds:', options: ['It is clouds.', 'There are dark clouds.', 'There is clouds.'], correctIndex: 1 },
+          ]
+        },
+        answerKey: '1.a 2.b 3.b'
+      },
+      {
+        id: genId(),
+        type: 'fill-blank',
+        title: 'Fill in the Blanks',
+        instruction: 'Complete with "It is" or "There is/are".',
+        content: {
+          sentences: [
+            { id: genId(), text: '___ very cold today.', answer: 'It is' },
+            { id: genId(), text: '___ a thunderstorm coming.', answer: 'There is' },
+            { id: genId(), text: '___ beautiful sunshine this morning.', answer: 'There is' },
+          ]
+        },
+        answerKey: '1. It is 2. There is 3. There is'
+      },
+      {
+        id: genId(),
+        type: 'roleplay-card',
+        title: 'Weather Planning Roleplay',
+        instruction: 'Discuss weather and plan an activity accordingly.',
+        content: {
+          situation: 'You and your friend are deciding what to do based on the weather forecast.',
+          studentRole: 'A traveler checking the forecast',
+          teacherRole: 'Your travel partner',
+          studentLines: [
+            { id: genId(), prompt: 'Ask about the weather forecast for tomorrow.', suggestedResponse: 'What is the weather forecast for tomorrow?' },
+            { id: genId(), prompt: 'Suggest an indoor activity because of rain.', suggestedResponse: 'It is going to rain. We should visit the museum instead.' },
+            { id: genId(), prompt: 'Agree on a plan for the sunny day after.', suggestedResponse: 'On Wednesday it will be sunny. We can go to the beach then.' },
+          ],
+          teacherLines: [
+            { id: genId(), line: 'Tomorrow will be rainy and cold, around 15 degrees.' },
+            { id: genId(), line: 'Good idea. The museum has a new exhibit too.' },
+            { id: genId(), line: 'That sounds perfect. I love the beach when it is warm.' },
+          ]
+        },
+        answerKey: 'Weather expressions and planning dialogue answers as listed.'
+      },
+    ],
+    homework: {
+      title: 'Weather & Seasons Practice',
+      tasks: [
+        'Write 5 sentences describing today\'s weather using "It is" and "There is/are"',
+        'Translate 3 weather phrases to English',
+        'Describe your favorite season and why you like it',
+      ]
+    },
+    roleplay: {
+      title: 'Planning Around the Weather',
+      situation: 'You are planning a day out but need to check the weather first.',
+      studentRole: 'A traveler planning activities',
+      teacherRole: 'A local giving weather advice',
+      script: [
+        { speaker: 'student', text: 'What is the weather like today?' },
+        { speaker: 'teacher', text: 'It is sunny but quite humid, about 30 degrees.' },
+        { speaker: 'student', text: 'Is there a breeze? I do not like very hot weather.' },
+        { speaker: 'teacher', text: 'Yes, there is a nice breeze from the sea in the afternoon.' },
+        { speaker: 'student', text: 'Then I will go to the beach after lunch. What about tomorrow?' },
+        { speaker: 'teacher', text: 'Tomorrow there is a forecast for rain. You should plan indoor activities.' },
+      ]
+    },
+    answerKey: 'Weather exercises and planning dialogue answers as listed.',
+    teacherNotes: 'Good start to Month 3. Connect weather vocabulary to real travel scenarios. Practice temperature numbers too.'
+  },
+  // ============ MONTH 3: MAY 2026 ============
+  {
+    id: 'session-26',
+    number: 26,
     date: '2026-05-04',
     title: 'Weather & Seasons',
     goal: 'Describe weather conditions and seasonal activities. Use "It is..." and "There is..." naturally.',
@@ -2565,8 +2682,8 @@ export const sessions: Session[] = [
     teacherNotes: 'Connect weather to real travel situations. Ask students about weather in their home countries.'
   },
   {
-    id: 'session-26',
-    number: 26,
+    id: 'session-27',
+    number: 27,
     date: '2026-05-05',
     title: 'Doctor Visit & Health',
     goal: 'Describe symptoms clearly at a doctor\'s office and understand basic medical instructions.',
@@ -2691,8 +2808,8 @@ export const sessions: Session[] = [
     teacherNotes: 'Practice clear symptom description. Encourage students to use full sentences, not just single words.'
   },
   {
-    id: 'session-27',
-    number: 27,
+    id: 'session-28',
+    number: 28,
     date: '2026-05-07',
     title: 'Money, Banking & ATMs',
     goal: 'Handle money exchange, use an ATM, and ask about prices and payments.',
@@ -2805,8 +2922,8 @@ export const sessions: Session[] = [
     teacherNotes: 'Practice real money situations. Bring different currency examples if possible.'
   },
   {
-    id: 'session-28',
-    number: 28,
+    id: 'session-29',
+    number: 29,
     date: '2026-05-08',
     title: 'Sightseeing & Museums',
     goal: 'Ask about attractions, buy tickets, and discuss what you see.',
@@ -2915,8 +3032,8 @@ export const sessions: Session[] = [
     teacherNotes: 'Use photos of real landmarks if available. Encourage students to express opinions with superlatives.'
   },
   {
-    id: 'session-29',
-    number: 29,
+    id: 'session-30',
+    number: 30,
     date: '2026-05-11',
     title: 'Comparing & Choosing Options',
     goal: 'Compare travel options and express preferences using comparative and superlative forms.',
@@ -3023,8 +3140,8 @@ export const sessions: Session[] = [
     teacherNotes: 'Focus on real travel decisions. Students should give reasons for their preference.'
   },
   {
-    id: 'session-30',
-    number: 30,
+    id: 'session-31',
+    number: 31,
     date: '2026-05-12',
     title: 'Future Plans (Will / Going to)',
     goal: 'Talk about future travel plans using "will" for decisions and "going to" for intentions.',
@@ -3132,8 +3249,8 @@ export const sessions: Session[] = [
     teacherNotes: 'Help students distinguish will (quick decision) from going to (plan). Practice both forms clearly.'
   },
   {
-    id: 'session-31',
-    number: 31,
+    id: 'session-32',
+    number: 32,
     date: '2026-05-14',
     title: 'Formal vs Casual Language',
     goal: 'Switch between formal and casual English depending on the situation.',
@@ -3223,8 +3340,8 @@ export const sessions: Session[] = [
     teacherNotes: 'Practice switching between registers. It is ok to be semi-formal in many situations.'
   },
   {
-    id: 'session-32',
-    number: 32,
+    id: 'session-33',
+    number: 33,
     date: '2026-05-15',
     title: 'Making Effective Complaints',
     goal: 'Make polite but firm complaints in real travel situations.',
@@ -3316,8 +3433,8 @@ export const sessions: Session[] = [
     teacherNotes: 'Role-play staying calm while being firm. Practice tone of voice.'
   },
   {
-    id: 'session-33',
-    number: 33,
+    id: 'session-34',
+    number: 34,
     date: '2026-05-18',
     title: 'At the Beach & Water Activities',
     goal: 'Talk about beach activities, safety, and ask about facilities.',
@@ -3412,8 +3529,8 @@ export const sessions: Session[] = [
     teacherNotes: 'Emphasize safety vocabulary. Practice both giving and understanding safety instructions.'
   },
   {
-    id: 'session-34',
-    number: 34,
+    id: 'session-35',
+    number: 35,
     date: '2026-05-19',
     title: 'Travel Etiquette & Cultural Tips',
     goal: 'Understand cultural differences in greetings, tipping, and social behavior while traveling.',
@@ -3504,8 +3621,8 @@ export const sessions: Session[] = [
     teacherNotes: 'Discuss real cultural differences. Encourage curiosity and respect.'
   },
   {
-    id: 'session-35',
-    number: 35,
+    id: 'session-36',
+    number: 36,
     date: '2026-05-21',
     title: 'Extended Phone Conversations',
     goal: 'Handle multi-step phone calls: making, holding, and following up on calls.',
@@ -3600,8 +3717,8 @@ export const sessions: Session[] = [
     teacherNotes: 'Practice patience and politeness on hold. Emphasize confirmation at the end of calls.'
   },
   {
-    id: 'session-36',
-    number: 36,
+    id: 'session-37',
+    number: 37,
     date: '2026-05-22',
     title: 'Understanding Announcements',
     goal: 'Understand airport, train station, and public service announcements.',
@@ -3692,8 +3809,8 @@ export const sessions: Session[] = [
     teacherNotes: 'Read announcements slowly and clearly. Practice asking for clarification.'
   },
   {
-    id: 'session-37',
-    number: 37,
+    id: 'session-38',
+    number: 38,
     date: '2026-05-25',
     title: 'Negotiating & Bargaining at Markets',
     goal: 'Negotiate prices politely at markets and bazaars.',
@@ -3785,8 +3902,8 @@ export const sessions: Session[] = [
     teacherNotes: 'Polite bargaining is key. Practice friendly tone while negotiating.'
   },
   {
-    id: 'session-38',
-    number: 38,
+    id: 'session-39',
+    number: 39,
     date: '2026-05-26',
     title: 'Present Perfect for Travel Experiences',
     goal: 'Use "have you ever" and "I have been" to talk about travel experiences.',
@@ -3888,8 +4005,8 @@ export const sessions: Session[] = [
     teacherNotes: 'Practice present perfect in natural conversation. Focus on correct have/has forms.'
   },
   {
-    id: 'session-39',
-    number: 39,
+    id: 'session-40',
+    number: 40,
     date: '2026-05-28',
     title: 'Staying Connected (Internet, SIM & Post)',
     goal: 'Get a local SIM card, find WiFi, and use the post office while traveling.',
@@ -3984,8 +4101,8 @@ export const sessions: Session[] = [
     teacherNotes: 'Discuss local SIM options in the student\'s target country. Practical info is valuable.'
   },
   {
-    id: 'session-40',
-    number: 40,
+    id: 'session-41',
+    number: 41,
     date: '2026-05-29',
     title: 'Month 3 Review & Assessment',
     goal: 'Review all Month 3 topics and complete a comprehensive speaking assessment.',
