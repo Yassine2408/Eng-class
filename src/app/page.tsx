@@ -29,6 +29,14 @@ import { Session, Exercise, VocabItem, PhraseItem } from '@/lib/types';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Textarea } from '@/components/ui/textarea';
 import { Checkbox } from '@/components/ui/checkbox';
+import dynamic from 'next/dynamic';
+
+const BarChart = dynamic(() => import('recharts').then(mod => mod.BarChart), { ssr: false });
+const Bar = dynamic(() => import('recharts').then(mod => mod.Bar), { ssr: false });
+const XAxis = dynamic(() => import('recharts').then(mod => mod.XAxis), { ssr: false });
+const YAxis = dynamic(() => import('recharts').then(mod => mod.YAxis), { ssr: false });
+const Tooltip = dynamic(() => import('recharts').then(mod => mod.Tooltip), { ssr: false });
+const ResponsiveContainer = dynamic(() => import('recharts').then(mod => mod.ResponsiveContainer), { ssr: false });
 
 type MonthOption = {
   key: string;
@@ -56,6 +64,18 @@ function getMonthOptions(sessions: Session[]): MonthOption[] {
   }
 
   return Array.from(seen.values()).sort((a, b) => a.key.localeCompare(b.key));
+}
+
+// ============ TEXT TO SPEECH ============
+function speak(text: string, lang: string = 'en-US') {
+  if (typeof window !== 'undefined' && window.speechSynthesis) {
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = lang;
+    utterance.rate = 0.85;
+    utterance.pitch = 1;
+    window.speechSynthesis.speak(utterance);
+  }
 }
 
 // ============ LANDING PAGE ============
@@ -456,9 +476,12 @@ function SessionDetailPage({
   const updateProgress = useAppStore((state) => state.updateProgress);
   const submissions = useAppStore((state) => state.submissions);
   const addSubmission = useAppStore((state) => state.addSubmission);
+  const studentNotes = useAppStore((state) => state.studentNotes);
+  const updateStudentNotes = useAppStore((state) => state.updateStudentNotes);
   
   const sessionProgress = progress.find(p => p.sessionId === session.id);
   const submission = submissions.find(s => s.sessionId === session.id);
+  const currentNotes = studentNotes.find(n => n.sessionId === session.id)?.notes ?? '';
   
   const sections = [
     { id: 'overview', label: 'Overview' },
@@ -467,6 +490,7 @@ function SessionDetailPage({
     { id: 'exercises', label: 'Exercises' },
     { id: 'roleplay', label: 'Roleplay' },
     { id: 'homework', label: 'Homework' },
+    { id: 'mynotes', label: 'My Notes' },
   ];
   
   if (isTeacher) {
@@ -519,62 +543,22 @@ function SessionDetailPage({
                       <div className="w-6 h-6 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center text-xs font-medium flex-shrink-0">
                         {index + 1}
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="font-medium text-slate-800 text-sm">{step.title}</p>
-                        <p className="text-xs text-slate-500 truncate">{step.description}</p>
+<div className="flex-1 min-w-0">
+                        <p className="font-medium text-slate-800 text-sm sm:text-base">{step.title}</p>
+                        <p className="text-xs sm:text-sm text-slate-600">{step.description}</p>
+                        {step.duration && (
+                          <Badge variant="outline" className="mt-1 text-[10px]">{step.duration}</Badge>
+                        )}
                       </div>
-                      <Badge variant="outline" className="text-[10px] flex-shrink-0">{step.duration}min</Badge>
                     </div>
                   ))}
                 </div>
               </CardContent>
             </Card>
-            
-            {!isTeacher && (
-              <Card>
-                <CardHeader className="pb-2 px-3 sm:px-4 pt-3 sm:pt-4">
-                  <CardTitle className="text-base sm:text-lg">My Progress</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3 px-3 sm:px-4 pb-3 sm:pb-4">
-                  <div className="flex items-center gap-3 py-1">
-                    <Checkbox 
-                      checked={sessionProgress?.attended || false}
-                      onCheckedChange={(checked) => updateProgress(session.id, { attended: !!checked })}
-                      className="touch-manipulation"
-                    />
-                    <span className="text-sm">Attended this session</span>
-                  </div>
-                  <div className="flex items-center gap-3 py-1">
-                    <Checkbox 
-                      checked={sessionProgress?.homeworkCompleted || false}
-                      onCheckedChange={(checked) => updateProgress(session.id, { homeworkCompleted: !!checked })}
-                      className="touch-manipulation"
-                    />
-                    <span className="text-sm">Completed homework</span>
-                  </div>
-                  <div className="space-y-2 pt-1">
-                    <Label className="text-sm">Confidence Rating</Label>
-                    <div className="flex gap-1">
-                      {[1, 2, 3, 4, 5].map((rating) => (
-                        <Button
-                          key={rating}
-                          variant={sessionProgress?.confidenceRating === rating ? 'default' : 'outline'}
-                          size="sm"
-                          onClick={() => updateProgress(session.id, { confidenceRating: rating })}
-                          className={`w-10 h-10 touch-manipulation ${sessionProgress?.confidenceRating === rating ? 'bg-teal-600' : ''}`}
-                        >
-                          <Star className="w-4 h-4" />
-                        </Button>
-                      ))}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            )}
           </div>
         )}
         
-        {/* Vocabulary */}
+        {/* Vocab & Phrases */}
         {activeSection === 'vocab' && (
           <div className="space-y-3 sm:space-y-4">
             <Card>
@@ -586,7 +570,16 @@ function SessionDetailPage({
                   {session.vocab.map((item) => (
                     <div key={item.id} className="flex items-start gap-2 sm:gap-3 p-2.5 sm:p-3 rounded-lg bg-slate-50">
                       <div className="flex-1">
-                        <p className="font-medium text-slate-800 text-sm sm:text-base">{item.word}</p>
+                        <div className="flex items-center gap-1.5">
+                          <p className="font-medium text-slate-800 text-sm sm:text-base">{item.word}</p>
+                          <button
+                            onClick={() => speak(item.word)}
+                            className="p-1 rounded-full hover:bg-teal-100 text-teal-600 transition-colors touch-manipulation"
+                            aria-label={`Pronounce ${item.word}`}
+                          >
+                            <Volume2 className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
                         <p className="text-xs sm:text-sm text-slate-600">{item.meaning}</p>
                         {item.example && (
                           <p className="text-xs text-teal-600 mt-1 italic">&quot;{item.example}&quot;</p>
@@ -606,8 +599,17 @@ function SessionDetailPage({
                 <div className="grid gap-2">
                   {session.phrases.map((item) => (
                     <div key={item.id} className="flex items-start gap-2 sm:gap-3 p-2.5 sm:p-3 rounded-lg bg-slate-50">
-                      <div className="flex-1">
-                        <p className="font-medium text-slate-800 text-sm sm:text-base">{item.phrase}</p>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-1.5">
+                          <p className="font-medium text-slate-800 text-sm sm:text-base">{item.phrase}</p>
+                          <button
+                            onClick={() => speak(item.phrase)}
+                            className="p-1 rounded-full hover:bg-teal-100 text-teal-600 transition-colors touch-manipulation"
+                            aria-label="Pronounce phrase"
+                          >
+                            <Volume2 className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
                         <p className="text-xs sm:text-sm text-slate-600">{item.translation}</p>
                         {item.situation && (
                           <Badge variant="outline" className="mt-1 text-[10px]">{item.situation}</Badge>
@@ -736,6 +738,31 @@ function SessionDetailPage({
               <pre className="whitespace-pre-wrap text-xs sm:text-sm bg-slate-50 p-3 sm:p-4 rounded-lg overflow-x-auto">
                 {session.answerKey}
               </pre>
+            </CardContent>
+          </Card>
+        )}
+        
+        {/* Student Notes */}
+        {activeSection === 'mynotes' && (
+          <Card className="mt-3">
+            <CardHeader className="pb-2 px-3 sm:px-4 pt-3 sm:pt-4">
+              <CardTitle className="text-base sm:text-lg flex items-center gap-2">
+                <Edit className="w-4 h-4" /> My Notes
+              </CardTitle>
+              <CardDescription className="text-xs sm:text-sm">Personal notes for this session</CardDescription>
+            </CardHeader>
+            <CardContent className="px-3 sm:px-4 pb-3 sm:pb-4">
+              <Textarea
+                placeholder="Write your notes here... Vocabulary you want to remember, questions for next class, etc."
+                className="min-h-[160px] text-sm"
+                value={currentNotes}
+                onChange={(e) => updateStudentNotes(session.id, e.target.value)}
+              />
+              {currentNotes && (
+                <p className="text-xs text-slate-400 mt-2">
+                  Notes saved automatically
+                </p>
+              )}
             </CardContent>
           </Card>
         )}
@@ -1094,6 +1121,24 @@ function ProgressPage() {
   const sessions = useSessions();
   const progress = useProgress();
   
+  const sessionsByMonth = sessions.reduce<Record<string, { attended: number; total: number }>>((acc, session) => {
+    const monthKey = getMonthKeyFromDate(session.date);
+    if (!acc[monthKey]) acc[monthKey] = { attended: 0, total: 0 };
+    acc[monthKey].total++;
+    const sp = progress.find(p => p.sessionId === session.id);
+    if (sp?.attended) acc[monthKey].attended++;
+    return acc;
+  }, {});
+  
+  const chartData = Object.entries(sessionsByMonth)
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([month, data]) => ({
+      month,
+      attended: data.attended,
+      missed: data.total - data.attended,
+      total: data.total,
+    }));
+  
   return (
     <div className="p-3 sm:p-4 space-y-4 sm:space-y-6 pb-20">
       <h2 className="text-xl sm:text-2xl font-bold text-slate-800">My Progress</h2>
@@ -1141,6 +1186,32 @@ function ProgressPage() {
           </div>
         </CardContent>
       </Card>
+      
+      {/* Progress Chart */}
+      {chartData.length > 0 && (
+        <Card>
+          <CardHeader className="pb-2 px-3 sm:px-4 pt-3 sm:pt-4">
+            <CardTitle className="text-base sm:text-lg">Attendance by Month</CardTitle>
+            <CardDescription className="text-xs sm:text-sm">Sessions attended vs total per month</CardDescription>
+          </CardHeader>
+          <CardContent className="px-1 sm:px-4 pb-3 sm:pb-4">
+            <div className="h-48 sm:h-56">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={chartData} margin={{ top: 5, right: 10, left: -10, bottom: 5 }}>
+                  <XAxis dataKey="month" tick={{ fontSize: 11 }} tickFormatter={(v) => { const d = v.split('-'); const m = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']; return `${m[parseInt(d[1])-1]} '${d[0].slice(2)}`; }} />
+                  <YAxis allowDecimals={false} tick={{ fontSize: 11 }} />
+                  <Tooltip 
+                    formatter={(value: number, name: string) => [value, name === 'attended' ? 'Attended' : 'Missed']}
+                    labelFormatter={(label) => { const d = label.split('-'); const m = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']; return `${m[parseInt(d[1])-1]} ${d[0]}`; }}
+                  />
+                  <Bar dataKey="attended" fill="#0d9488" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="missed" fill="#e2e8f0" radius={[4, 4, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </CardContent>
+        </Card>
+      )}
       
       {/* Session Progress List */}
       <Card>

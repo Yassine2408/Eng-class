@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { AppData, Session, StudentSubmission, SessionProgress, UserRole, PhraseItem } from './types';
+import { AppData, Session, StudentSubmission, SessionProgress, UserRole, PhraseItem, StudentNotes } from './types';
 import { initialAppData } from './seed-data';
 
 interface AppState {
@@ -17,6 +17,7 @@ interface AppState {
   favoritePhraseIds: string[];
   phrasebook: PhraseItem[];
   selectedMonth: string; // 'all' or 'YYYY-MM'
+  studentNotes: StudentNotes[];
   
   // Current view
   currentView: 'landing' | 'student' | 'teacher';
@@ -39,6 +40,10 @@ interface AppState {
   
   // Phrasebook actions
   toggleFavoritePhrase: (phraseId: string) => void;
+  
+  // Student notes actions
+  updateStudentNotes: (sessionId: string, notes: string) => void;
+  getStudentNotes: (sessionId: string) => string;
   
   // Data management
   exportData: () => string;
@@ -99,6 +104,7 @@ export const useAppStore = create<AppState>()(
       favoritePhraseIds: [],
       phrasebook: initialAppData.phrasebook,
       selectedMonth: 'all',
+      studentNotes: [],
       currentView: 'landing',
       
       // Actions
@@ -158,6 +164,24 @@ export const useAppStore = create<AppState>()(
               : [...state.favoritePhraseIds, phraseId],
           };
         });
+      },
+      
+      updateStudentNotes: (sessionId, notes) => {
+        set((state) => {
+          const existing = state.studentNotes.findIndex(n => n.sessionId === sessionId);
+          if (existing >= 0) {
+            const updated = [...state.studentNotes];
+            updated[existing] = { sessionId, notes, updatedAt: new Date().toISOString() };
+            return { studentNotes: updated };
+          }
+          return { studentNotes: [...state.studentNotes, { sessionId, notes, updatedAt: new Date().toISOString() }] };
+        });
+      },
+      
+      getStudentNotes: (sessionId) => {
+        const state = get();
+        const note = state.studentNotes.find(n => n.sessionId === sessionId);
+        return note?.notes ?? '';
       },
       
       exportData: () => {

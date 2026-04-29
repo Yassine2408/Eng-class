@@ -150,6 +150,12 @@ export interface SessionProgress {
   notes?: string;
 }
 
+export interface StudentNotes {
+  sessionId: string;
+  notes: string;
+  updatedAt: string;
+}
+
 export interface AppData {
   sessions: Session[];
   submissions: StudentSubmission[];
@@ -158,6 +164,7 @@ export interface AppData {
   studentPassword: string;
   favoritePhraseIds: string[];
   phrasebook: PhraseItem[];
+  studentNotes: StudentNotes[];
 }
 
 export interface ResourceItem {
