@@ -937,9 +937,31 @@ function ExerciseCard({ exercise, isTeacher }: { exercise: Exercise; isTeacher: 
           situation: string;
           studentRole: string;
           teacherRole: string;
-          studentLines: Array<{ id: string; prompt: string; suggestedResponse?: string }>;
-          teacherLines: Array<{ id: string; line: string }>;
+          studentLines?: Array<{ id: string; prompt: string; suggestedResponse?: string }>;
+          teacherLines?: Array<{ id: string; line: string }>;
+          scenario?: string;
+          tasks?: string[];
+          roles?: string[];
         };
+        
+        if (!roleplayContent.studentLines || !roleplayContent.teacherLines) {
+          return (
+            <div className="space-y-3 sm:space-y-4">
+              <p className="text-sm text-slate-600">{roleplayContent.situation || roleplayContent.scenario}</p>
+              <div className="flex gap-2 flex-wrap">
+                <Badge className="bg-blue-100 text-blue-800 text-[10px] sm:text-xs">Student: {roleplayContent.studentRole || roleplayContent.roles?.[0] || 'Student'}</Badge>
+                <Badge className="bg-purple-100 text-purple-800 text-[10px] sm:text-xs">Teacher: {roleplayContent.teacherRole || roleplayContent.roles?.[1] || 'Teacher'}</Badge>
+              </div>
+              {roleplayContent.tasks && (
+                <ul className="space-y-1">
+                  {roleplayContent.tasks.map((task, i) => (
+                    <li key={i} className="p-2 bg-slate-50 rounded text-sm text-slate-700">• {task}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          );
+        }
         
         return (
           <div className="space-y-3 sm:space-y-4">

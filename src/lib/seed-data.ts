@@ -2408,9 +2408,21 @@ export const sessions: Session[] = [
         title: 'Full Travel Simulation',
         instruction: 'You arrive in a new city. Check in at the hotel, ask for directions, order food, and make a polite complaint.',
         content: {
-          scenario: 'Full day simulation',
-          tasks: ['Check in at hotel using formal English', 'Ask about local attractions using comparatives', 'Order food at a restaurant', 'Make a polite complaint about your room'],
-          roles: ['Traveler', 'Hotel staff / Waiter / Local'],
+          situation: 'You arrive in a new city and need to handle several situations using the English you have learned.',
+          studentRole: 'Traveler',
+          teacherRole: 'Hotel clerk / Waiter / Local guide',
+          studentLines: [
+            { id: genId(), prompt: 'Check in at the hotel using formal English.', suggestedResponse: 'Good evening. I would like to check in, please.' },
+            { id: genId(), prompt: 'Ask about local attractions using comparatives.', suggestedResponse: 'Could you recommend a good restaurant? Which one is better, the Italian or the local one?' },
+            { id: genId(), prompt: 'Order food at a restaurant.', suggestedResponse: 'I would like the grilled chicken, please. And could I have some water?' },
+            { id: genId(), prompt: 'Make a polite complaint about your room.', suggestedResponse: 'I am afraid there is a problem with my room. The air conditioning is not working.' },
+          ],
+          teacherLines: [
+            { id: genId(), line: 'Welcome! Do you have a reservation?' },
+            { id: genId(), line: 'The Olive Garden is the best restaurant nearby. It is more affordable than others.' },
+            { id: genId(), line: 'Certainly. Anything else I can get you?' },
+            { id: genId(), line: 'I apologize for the inconvenience. I will send someone right away.' },
+          ]
         },
         answerKey: 'Students should use appropriate register for each situation.'
       },
